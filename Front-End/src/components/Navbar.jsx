@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const navLinks = [
   { label: "Shop Now", href: "#" },
@@ -21,15 +23,22 @@ const navLinks = [
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E1D8]">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
         {/* Logo */}
-        <a href="#" className="text-xl font-serif tracking-tight text-[#1A1A1A]">
+        <Link to="/" className="text-xl font-serif tracking-tight text-[#1A1A1A]">
           Fr<span style={{ fontStyle: "italic" }}>ä</span>gra.
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-1">
@@ -70,9 +79,19 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          {isAuthenticated && (
+            <li>
+              <Link
+                to="/users"
+                className="block px-3 py-2 text-sm text-[#717171] hover:text-[#1A1A1A] transition-colors"
+              >
+                Users
+              </Link>
+            </li>
+          )}
         </ul>
 
-        {/* Icons */}
+        {/* Actions */}
         <div className="flex items-center gap-3">
           {/* Search */}
           <button className="p-2 text-[#717171] hover:text-[#1A1A1A] transition-colors">
@@ -82,23 +101,34 @@ export default function Navbar() {
             </svg>
           </button>
 
-          {/* User */}
-          <button className="p-2 text-[#717171] hover:text-[#1A1A1A] transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" strokeLinecap="round"/>
-            </svg>
-          </button>
-
-          {/* Cart */}
-          <button className="relative p-2 text-[#717171] hover:text-[#1A1A1A] transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <path d="M16 10a4 4 0 01-8 0" strokeLinecap="round"/>
-            </svg>
-            <span className="absolute top-1 right-1 w-2 h-2 bg-[#1A1A1A] rounded-full"></span>
-          </button>
+          {isAuthenticated ? (
+            <>
+              <span className="hidden md:block text-sm text-[#1A1A1A] font-medium">
+                {user?.name}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1.5 text-sm font-medium text-white bg-[#1A1A1A] rounded-lg hover:bg-[#1A1A1A]/90 transition-colors"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="hidden md:block px-3 py-1.5 text-sm font-medium text-[#1A1A1A] border border-[#E5E1D8] rounded-lg hover:bg-[#F3F0E9] transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="px-3 py-1.5 text-sm font-medium text-white bg-[#1A1A1A] rounded-lg hover:bg-[#1A1A1A]/90 transition-colors"
+              >
+                Register
+              </Link>
+            </>
+          )}
 
           {/* Mobile Hamburger */}
           <button
@@ -132,6 +162,37 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          {isAuthenticated && (
+            <Link
+              to="/users"
+              className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
+            >
+              Users
+            </Link>
+          )}
+          {isAuthenticated ? (
+            <button
+              onClick={handleLogout}
+              className="text-left text-sm text-red-600 hover:text-red-700 py-1 transition-colors"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       )}
     </nav>
