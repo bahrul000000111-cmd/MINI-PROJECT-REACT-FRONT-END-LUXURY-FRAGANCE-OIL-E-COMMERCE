@@ -3,8 +3,9 @@ import React from 'react';
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SocialProof from './components/SocialProof'
-import ComparisonTable from './components/Comparisonsection'
 import StatsSection from './components/StatsSection';
+import ShopByHotel from './components/ShopByHotel';
+import ComparisonSection from './components/ComparisonSection';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Navbar />
       <Hero />
       <SocialProof />
-      <ComparisonTable />
+      <ComparisonSection />
       <StatsSection/>
+      <ShopByHotel/>
     </>
   )
 }
