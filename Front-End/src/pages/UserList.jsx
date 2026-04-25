@@ -41,7 +41,7 @@ export default function UserList() {
   }
 
   return (
-    <div className="min-h-screen bg-frag-cream px-4 py-12">
+    <div className="min-h-screen bg-frag-cream px-4 py-12 pt-24">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-serif text-frag-dark mb-2">User Directory</h1>

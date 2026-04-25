@@ -47,7 +47,7 @@ export default function Register() {
   const getError = (field) => errors[field]?.[0] || '';
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-frag-cream px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-frag-cream px-4 py-12 pt-24">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-frag-border p-8">
         <h1 className="text-3xl font-serif text-frag-dark text-center mb-2">Get Started</h1>
         <p className="text-sm text-frag-gray text-center mb-8">Create your account to explore</p>

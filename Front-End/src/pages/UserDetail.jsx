@@ -59,7 +59,7 @@ export default function UserDetail() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-frag-cream px-4 py-12">
+    <div className="min-h-screen bg-frag-cream px-4 py-12 pt-24">
       <div className="max-w-2xl mx-auto">
         <Link
           to="/users"

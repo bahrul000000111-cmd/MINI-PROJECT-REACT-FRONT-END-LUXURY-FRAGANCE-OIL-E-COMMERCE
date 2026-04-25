@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-frag-cream px-4">
+    <div className="min-h-screen flex items-center justify-center bg-frag-cream px-4 pt-24">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-frag-border p-8">
         <h1 className="text-3xl font-serif text-frag-dark text-center mb-2">Welcome Back</h1>
         <p className="text-sm text-frag-gray text-center mb-8">Sign in to access your account</p>
