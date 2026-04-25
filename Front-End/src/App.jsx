@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SocialProof from './components/SocialProof'
-import ComparisonTable from './components/ComparisonTable'
+import ComparisonTable from './components/Comparisonsection'
 
 function App() {
   return (
