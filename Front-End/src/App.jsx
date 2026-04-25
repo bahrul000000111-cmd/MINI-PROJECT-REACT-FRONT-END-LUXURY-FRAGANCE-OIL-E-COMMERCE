@@ -6,6 +6,7 @@ import SocialProof from './components/SocialProof'
 import StatsSection from './components/StatsSection';
 import ShopByHotel from './components/ShopByHotel';
 import ComparisonSection from './components/ComparisonSection';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <ComparisonSection />
       <StatsSection/>
       <ShopByHotel/>
+      <Footer/>
     </>
   )
 }
