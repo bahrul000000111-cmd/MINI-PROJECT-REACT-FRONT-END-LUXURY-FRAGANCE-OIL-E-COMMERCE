@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SocialProof from './components/SocialProof'
 import ComparisonTable from './components/Comparisonsection'
+import StatsSection from './components/StatsSection';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Hero />
       <SocialProof />
       <ComparisonTable />
+      <StatsSection/>
     </>
   )
 }
