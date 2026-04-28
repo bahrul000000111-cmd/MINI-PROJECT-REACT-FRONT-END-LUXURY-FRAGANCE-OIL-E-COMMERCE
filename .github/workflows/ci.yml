@@ -1,0 +1,12 @@
+name: CI Pipeline
+on: [push, pull_request] # Events that trigger the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # The environment to run the code
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Uses a pre-built action to pull your code
+
+      - name: Install dependencies
+        run: npm install # Standard shell command
