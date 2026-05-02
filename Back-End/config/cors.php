@@ -6,7 +6,7 @@ return [
     'allowed_origins' => [
         'http://localhost:5173',
         'http://localhost:3000', 
-        'https://mini-project-react-front-end-luxury.vercel.app'
+        'https://mini-project-react-front-end-luxury.vercel.app',
     ],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
