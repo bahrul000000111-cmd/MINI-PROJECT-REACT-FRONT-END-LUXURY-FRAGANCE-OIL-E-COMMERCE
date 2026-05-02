@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 import Hero from './components/Hero';
 import SocialProof from './components/SocialProof';
 import StatsSection from './components/StatsSection';
@@ -11,7 +12,8 @@ import Register from './pages/Register';
 import UserList from './pages/UserList';
 import UserDetail from './pages/UserDetail';
 import ProtectedRoute from './components/ProtectedRoute';
-import GeneralContentPage from './pages/GeneralContentPage';
+import ContentDetailView from './pages/ContentDetailView';
+import NotFoundPage from './pages/NotFoundPage';
 
 function LandingPage() {
   return (
@@ -29,46 +31,24 @@ function LandingPage() {
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
+        {/* ── Public ── */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/users"
-          element={
-            <ProtectedRoute>
-              <UserList />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/users/:id"
-          element={
-            <ProtectedRoute>
-              <UserDetail />
-            </ProtectedRoute>
-          }
-        />
 
-        {/* ── Dynamic Content Pages ── */}
-        <Route path="/shop-now" element={<GeneralContentPage />} />
-        <Route path="/shop-all" element={<GeneralContentPage />} />
-        <Route path="/scent-diffusers" element={<GeneralContentPage />} />
-        <Route path="/hotel-collection" element={<GeneralContentPage />} />
-        <Route path="/designer-collection" element={<GeneralContentPage />} />
-        <Route path="/perfumes" element={<GeneralContentPage />} />
-        <Route path="/about-us" element={<GeneralContentPage />} />
-        <Route path="/contact" element={<GeneralContentPage />} />
-        <Route path="/privacy-policy" element={<GeneralContentPage />} />
-        <Route path="/terms-of-service" element={<GeneralContentPage />} />
-        <Route path="/cookie-policy" element={<GeneralContentPage />} />
-        <Route path="/faq" element={<GeneralContentPage />} />
-        <Route path="/shipping" element={<GeneralContentPage />} />
-        <Route path="/gift-sets" element={<GeneralContentPage />} />
+        {/* ── Protected ── */}
+        <Route path="/users" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
+        <Route path="/users/:id" element={<ProtectedRoute><UserDetail /></ProtectedRoute>} />
 
-        {/* Catch-all for unknown pages → Coming Soon */}
-        <Route path="*" element={<GeneralContentPage />} />
+        {/* ── Dynamic Info Pages (/info/:slug) ── */}
+        <Route path="/info/:slug" element={<ContentDetailView />} />
+
+        {/* ── 404 ── */}
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

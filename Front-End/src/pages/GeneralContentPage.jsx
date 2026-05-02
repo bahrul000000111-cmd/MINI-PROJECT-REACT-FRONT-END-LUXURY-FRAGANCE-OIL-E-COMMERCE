@@ -1,6 +1,8 @@
 import { useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
+import ProductDetailOverlay from '../components/ProductDetailOverlay';
 
 // ─── Dummy Data ───
 const pageContent = {
@@ -291,6 +293,7 @@ export function labelToPath(label) {
 export default function GeneralContentPage() {
   const location = useLocation();
   const [visible, setVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const data = pageContent[location.pathname];
 
   useEffect(() => {
@@ -419,7 +422,14 @@ export default function GeneralContentPage() {
 
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 16 }}>
                 {section.items.map((item, ii) => (
-                  <ItemCard key={ii} item={item} index={ii} visible={visible} sectionIndex={si} />
+                  <ItemCard 
+                    key={ii} 
+                    item={item} 
+                    index={ii} 
+                    visible={visible} 
+                    sectionIndex={si} 
+                    onClick={() => setSelectedProduct(item)}
+                  />
                 ))}
               </div>
             </div>
@@ -448,16 +458,26 @@ export default function GeneralContentPage() {
         </div>
       </div>
       <Footer />
+      <ProductDetailOverlay 
+        product={selectedProduct} 
+        isOpen={!!selectedProduct} 
+        onClose={() => setSelectedProduct(null)} 
+      />
     </>
   );
 }
 
 // ─── Item Card ───
-function ItemCard({ item, index, visible, sectionIndex }) {
+function ItemCard({ item, index, visible, sectionIndex, onClick }) {
   const [hovered, setHovered] = useState(false);
+
+  const baseImgUrl = `https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&auto=format&fit=crop`;
+  const img800 = `${baseImgUrl}&w=800`;
+  const layoutId = `product-image-${item.name}`;
 
   return (
     <div
+      onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -468,11 +488,21 @@ function ItemCard({ item, index, visible, sectionIndex }) {
         transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease, opacity 0.5s ease-in-out, translateY 0.5s ease-in-out",
         transform: hovered ? "scale(1.03)" : "scale(1)",
         boxShadow: hovered ? "0 16px 40px rgba(0,0,0,0.12)" : "0 2px 8px rgba(0,0,0,0.04)",
-        cursor: "default",
+        cursor: "pointer",
         opacity: visible ? 1 : 0,
+        display: "flex",
+        flexDirection: "column"
       }}
     >
-      {/* Icon dot */}
+      <div className="w-full h-48 mb-6 relative rounded-lg overflow-hidden bg-frag-cream flex items-center justify-center">
+        <motion.img 
+          layoutId={layoutId}
+          src={img800}
+          alt={item.name}
+          className="w-full h-full object-contain mix-blend-multiply"
+        />
+      </div>
+
       <div style={{
         width: 10, height: 10, borderRadius: "50%",
         background: "#C9A96E", marginBottom: 14, opacity: 0.7,

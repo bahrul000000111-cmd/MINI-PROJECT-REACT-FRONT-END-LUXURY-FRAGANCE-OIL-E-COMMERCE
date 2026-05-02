@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero-bg.png';
 
@@ -56,7 +55,7 @@ export default function Hero() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <Link
-                to="/shop-now"
+                to="/info/shop-now"
                 className="inline-flex items-center gap-2 bg-[#F3F0E9] text-[#1A1A1A] text-sm font-medium px-6 py-3 rounded-full hover:bg-white transition-colors"
               >
                 Build Your Starter Set
