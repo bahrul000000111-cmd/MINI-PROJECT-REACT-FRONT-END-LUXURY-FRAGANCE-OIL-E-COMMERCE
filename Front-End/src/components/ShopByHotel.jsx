@@ -6,27 +6,30 @@ const hotels = [
     name: "How to Choose the Perfect Tea Makeup",
     category: "Guide",
     date: "Jun 15, 2025",
-    image: "/assets/hotel-1.jpg",
+    // Popular: luxury hotel lobby interior
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe1d6?q=80&w=600&auto=format&fit=crop",
     tag: "Popular",
-    url: "/hotel/tea-makeup",
+    url: "/shop/hotel-collection",
   },
   {
     id: 2,
     name: "The Distinctive Art to Diffuse: When to Diffuse Scent Daily",
     category: "Nov 21, 2025",
     date: "Nov 21, 2025",
-    image: "/assets/hotel-2.jpg",
+    // New In: perfume glass bottle on marble
+    image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=600&auto=format&fit=crop",
     tag: "New In",
-    url: "/hotel/diffuse-daily",
+    url: "/shop/scent-diffusers",
   },
   {
     id: 3,
     name: "The Best Ingredients for Home Scent Sets used at Hotel",
     category: "Guide",
     date: "Jun 18, 2025",
-    image: "/assets/hotel-3.jpg",
+    // Editor Pick: elegant living room with natural sunlight
+    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=600&auto=format&fit=crop",
     tag: "Editor Pick",
-    url: "/hotel/best-ingredients",
+    url: "/shop/designer-collection",
   },
 ];
 
@@ -90,13 +93,17 @@ export default function ShopByHotel() {
               <div style={{ height: 180, background: "#EDE9E1", overflow: "hidden", position: "relative" }}>
                 <img
                   src={hotel.image}
-                  alt={hotel.name}
+                  alt={`${hotel.name} — Frägra Hotel Collection`}
+                  loading="lazy"
                   style={{
                     width: "100%", height: "100%", objectFit: "cover",
-                    transition: "transform 0.5s ease",
+                    transition: "transform 0.5s ease, filter 0.4s ease",
                     transform: hovered === hotel.id ? "scale(1.06)" : "scale(1)",
+                    filter: hovered === hotel.id ? "grayscale(0%)" : "grayscale(15%)",
                   }}
-                  onError={(e) => { e.target.style.display = "none"; }}
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop`;
+                  }}
                 />
                 {/* Tag */}
                 {hotel.tag && (

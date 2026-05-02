@@ -35,8 +35,8 @@ const cards = [
   {
     id: "fragra",
     dark: true,
-    imageSrc: "/assets/fragra-product.png",
-    imageAlt: "Frägra Diffuser",
+    imageSrc: "https://images.unsplash.com/photo-1600612253971-1e7b97b4b048?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Frägra Cold-Air Diffuser — Luxury Scenting System",
     features: [
       { label: "Cold Air Diffusion Technology", has: true },
       { label: "Safe For Kids & Pets", has: true },
@@ -51,8 +51,8 @@ const cards = [
   {
     id: "candle",
     dark: false,
-    imageSrc: "/assets/candle-product.png",
-    imageAlt: "Candle",
+    imageSrc: "https://images.unsplash.com/photo-1608181831718-c9e3c34f5c5a?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Traditional Scented Candle",
     productName: "Candle",
     features: [
       { label: "Requires heat and open flame", has: false },
@@ -66,8 +66,8 @@ const cards = [
   {
     id: "spray",
     dark: false,
-    imageSrc: "/assets/spray-product.png",
-    imageAlt: "Air Spray",
+    imageSrc: "https://images.unsplash.com/photo-1547496502-affa22e38b1c?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Generic Air Freshener Spray",
     productName: "Air Spray",
     features: [
       { label: "Aerosol or heated release", has: false },
@@ -136,13 +136,21 @@ export default function ComparisonSection() {
                 ...cardScale(card.id),
               }}
             >
-              {/* Photo — same height for all */}
-              <div style={{ height: 200, background: card.dark ? "#111" : "#EDE9E1", overflow: "hidden", flexShrink: 0 }}>
+              <div style={{ height: 200, background: card.dark ? "#111" : "#EDE9E1", overflow: "hidden", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <img
                   src={card.imageSrc}
                   alt={card.imageAlt}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
-                  onError={(e) => { e.target.style.display = "none"; }}
+                  loading="lazy"
+                  style={{
+                    width: "100%", height: "100%",
+                    objectFit: card.dark ? "cover" : "contain",
+                    objectPosition: "center",
+                    filter: card.dark ? "none" : "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+                    transition: "transform 0.4s ease",
+                  }}
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=600&auto=format&fit=crop`;
+                  }}
                 />
               </div>
 

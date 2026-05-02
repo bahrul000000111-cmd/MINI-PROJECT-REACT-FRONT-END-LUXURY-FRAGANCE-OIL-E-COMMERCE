@@ -14,7 +14,7 @@ const testimonials = [
     name: "Michelle R.",
     rating: 5,
     text: "Every time I walk into my living room it smells like a 5-star resort. My guests always ask what candle I'm burning — it's not a candle, it's Frägra.",
-    image: "/assets/testimonial-2.jpg",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&auto=format&fit=crop&crop=face",
     verified: true,
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
     name: "James T.",
     rating: 5,
     text: "Safe for my dogs and kids, and the scent lasts ALL day. I've tried everything — this is the only one that actually works consistently.",
-    image: "/assets/testimonial-3.jpg",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&h=150&auto=format&fit=crop&crop=face",
     verified: true,
   },
   {
@@ -30,7 +30,7 @@ const testimonials = [
     name: "Diana K.",
     rating: 5,
     text: "I bought it as a gift and ended up ordering one for myself the same week. The hotel scent collection is absolutely divine.",
-    image: "/assets/testimonial-4.jpg",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&auto=format&fit=crop&crop=face",
     verified: true,
   },
   {
@@ -38,7 +38,7 @@ const testimonials = [
     name: "Robert A.",
     rating: 5,
     text: "No more candle wax mess, no more worrying about open flames. Just clean, long-lasting scent. Worth every penny.",
-    image: "/assets/testimonial-5.jpg",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop&crop=face",
     verified: true,
   },
 ];
@@ -152,9 +152,12 @@ export default function SocialProof() {
             >
               <img
                 src={t.image}
-                alt={t.name}
+                alt={`${t.name} — Frägra customer review`}
+                loading="lazy"
                 className="w-full h-full object-cover object-top"
-                onError={(e) => { e.target.style.display = "none"; }}
+                onError={(e) => {
+                  e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=E5E1D8&color=1A1A1A&size=150&font-size=0.4`;
+                }}
               />
             </div>
 
