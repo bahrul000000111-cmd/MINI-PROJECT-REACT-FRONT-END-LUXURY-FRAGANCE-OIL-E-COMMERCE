@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Login() {
@@ -8,6 +8,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  // Redirect back to origin after login (from AuthGateModal)
+  const from = location.state?.from || '/users';
+  const redirectMessage = location.state?.message || '';
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -22,7 +26,7 @@ export default function Login() {
     const result = await login(form.email, form.password);
 
     if (result.success) {
-      navigate('/users');
+      navigate(from, { replace: true });
     } else {
       setError(result.message);
     }
@@ -35,6 +39,13 @@ export default function Login() {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-frag-border p-8">
         <h1 className="text-3xl font-serif text-frag-dark text-center mb-2">Welcome Back</h1>
         <p className="text-sm text-frag-gray text-center mb-8">Sign in to access your account</p>
+
+        {redirectMessage && (
+          <div className="mb-4 p-3 bg-frag-cream border border-frag-border rounded-lg text-sm text-frag-dark flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" strokeLinecap="round"/></svg>
+            {redirectMessage}
+          </div>
+        )}
 
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
