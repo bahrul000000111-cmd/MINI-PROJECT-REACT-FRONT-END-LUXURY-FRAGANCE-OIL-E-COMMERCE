@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero-bg.png';
 
 export default function Hero() {
@@ -54,8 +55,8 @@ export default function Hero() {
           {/* CTA */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
-              <a
-                href="#"
+              <Link
+                to="/shop-now"
                 className="inline-flex items-center gap-2 bg-[#F3F0E9] text-[#1A1A1A] text-sm font-medium px-6 py-3 rounded-full hover:bg-white transition-colors"
               >
                 Build Your Starter Set
@@ -64,7 +65,7 @@ export default function Hero() {
                     <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
             <p className="flex items-center gap-1 text-white/50 text-xs">
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none">

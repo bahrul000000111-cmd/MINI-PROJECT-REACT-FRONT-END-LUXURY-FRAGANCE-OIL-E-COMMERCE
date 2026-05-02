@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import UserList from './pages/UserList';
 import UserDetail from './pages/UserDetail';
 import ProtectedRoute from './components/ProtectedRoute';
+import GeneralContentPage from './pages/GeneralContentPage';
 
 function LandingPage() {
   return (
@@ -49,6 +50,25 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* ── Dynamic Content Pages ── */}
+        <Route path="/shop-now" element={<GeneralContentPage />} />
+        <Route path="/shop-all" element={<GeneralContentPage />} />
+        <Route path="/scent-diffusers" element={<GeneralContentPage />} />
+        <Route path="/hotel-collection" element={<GeneralContentPage />} />
+        <Route path="/designer-collection" element={<GeneralContentPage />} />
+        <Route path="/perfumes" element={<GeneralContentPage />} />
+        <Route path="/about-us" element={<GeneralContentPage />} />
+        <Route path="/contact" element={<GeneralContentPage />} />
+        <Route path="/privacy-policy" element={<GeneralContentPage />} />
+        <Route path="/terms-of-service" element={<GeneralContentPage />} />
+        <Route path="/cookie-policy" element={<GeneralContentPage />} />
+        <Route path="/faq" element={<GeneralContentPage />} />
+        <Route path="/shipping" element={<GeneralContentPage />} />
+        <Route path="/gift-sets" element={<GeneralContentPage />} />
+
+        {/* Catch-all for unknown pages → Coming Soon */}
+        <Route path="*" element={<GeneralContentPage />} />
       </Routes>
     </>
   );

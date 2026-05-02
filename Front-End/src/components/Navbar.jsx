@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { labelToPath } from "../pages/GeneralContentPage";
 
 const navLinks = [
-  { label: "Shop Now", href: "#" },
+  { label: "Shop Now", href: "/shop-now" },
   {
     label: "Shop All",
     dropdown: ["All Products", "Best Sellers", "New Arrivals", "Gift Sets"],
@@ -16,8 +17,8 @@ const navLinks = [
     label: "Hotel Collection",
     dropdown: ["Hotel Scents", "Lobby Collection", "Premium Line"],
   },
-  { label: "Designer Collection", href: "#" },
-  { label: "Perfumes", href: "#" },
+  { label: "Designer Collection", href: "/designer-collection" },
+  { label: "Perfumes", href: "/perfumes" },
 ];
 
 export default function Navbar() {
@@ -58,24 +59,24 @@ export default function Navbar() {
                   {openDropdown === link.label && (
                     <div className="absolute top-full left-0 mt-1 bg-white border border-[#E5E1D8] rounded-xl shadow-lg py-2 min-w-48 z-50">
                       {link.dropdown.map((item) => (
-                        <a
+                        <Link
                           key={item}
-                          href="#"
+                          to={labelToPath(item)}
                           className="block px-4 py-2 text-sm text-[#717171] hover:text-[#1A1A1A] hover:bg-[#F3F0E9] transition-colors"
                         >
                           {item}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
                 </button>
               ) : (
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className="block px-3 py-2 text-sm text-[#717171] hover:text-[#1A1A1A] transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               )}
             </li>
           ))}
@@ -154,17 +155,19 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-[#E5E1D8] px-6 py-4 flex flex-col gap-3">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href || "#"}
+              to={link.href || labelToPath(link.label)}
+              onClick={() => setMobileOpen(false)}
               className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           {isAuthenticated && (
             <Link
               to="/users"
+              onClick={() => setMobileOpen(false)}
               className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
             >
               Users
@@ -181,12 +184,14 @@ export default function Navbar() {
             <>
               <Link
                 to="/login"
+                onClick={() => setMobileOpen(false)}
                 className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
               >
                 Login
               </Link>
               <Link
                 to="/register"
+                onClick={() => setMobileOpen(false)}
                 className="text-sm text-[#717171] hover:text-[#1A1A1A] py-1 transition-colors"
               >
                 Register

@@ -24,24 +24,35 @@ export default function Register() {
     setLoading(true);
     setErrors({});
 
-    const result = await register(
-      form.name,
-      form.email,
-      form.password,
-      form.password_confirmation
-    );
+    try {
+      const result = await register(
+        form.name,
+        form.email,
+        form.password,
+        form.password_confirmation
+      );
 
-    if (result.success) {
-      navigate('/users');
-    } else {
-      if (result.errors) {
-        setErrors(result.errors);
+      if (result.success) {
+        navigate('/users');
       } else {
-        setErrors({ general: result.message });
+        if (result.errors) {
+          setErrors(result.errors);
+        } else {
+          setErrors({ general: result.message });
+        }
       }
+    } catch (error) {
+      // Handle network/timeout/unexpected errors gracefully
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        setErrors({ general: 'Server sedang sibuk, coba lagi nanti.' });
+      } else if (!navigator.onLine) {
+        setErrors({ general: 'Tidak ada koneksi internet. Periksa jaringan Anda.' });
+      } else {
+        setErrors({ general: 'Terjadi kesalahan tak terduga. Silakan coba lagi.' });
+      }
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const getError = (field) => errors[field]?.[0] || '';

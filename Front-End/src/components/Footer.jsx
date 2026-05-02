@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { labelToPath } from "../pages/GeneralContentPage";
+
 const footerLinks = {
   Shop: ["Shop All", "Scent Diffusers", "Hotel Collection", "Designer Collection", "Perfumes", "Gift Sets"],
   Support: ["FAQ", "Shipping & Returns", "Track My Order", "Contact Us", "Warranty"],
@@ -35,6 +38,12 @@ const socials = [
       </svg>
     ),
   },
+];
+
+const bottomBarLinks = [
+  { label: "Privacy Policy", path: "/privacy-policy" },
+  { label: "Terms", path: "/terms-of-service" },
+  { label: "Cookies", path: "/cookie-policy" },
 ];
 
 export default function Footer() {
@@ -82,12 +91,14 @@ export default function Footer() {
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 9 }}>
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none", transition: "color 0.2s" }}
+                    <Link
+                      to={labelToPath(link)}
+                      style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none", transition: "color 0.2s" }}
                       onMouseEnter={(e) => e.currentTarget.style.color = "white"}
                       onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
                     >
                       {link}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -144,13 +155,13 @@ export default function Footer() {
             © 2025 Frägra. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: 20 }}>
-            {["Privacy Policy", "Terms", "Cookies"].map((item) => (
-              <a key={item} href="#" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none", transition: "color 0.2s" }}
+            {bottomBarLinks.map((item) => (
+              <Link key={item.label} to={item.path} style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none", transition: "color 0.2s" }}
                 onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
                 onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.3)"}
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>
