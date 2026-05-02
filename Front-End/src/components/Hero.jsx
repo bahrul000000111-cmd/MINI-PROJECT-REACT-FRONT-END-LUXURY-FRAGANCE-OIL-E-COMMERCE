@@ -1,3 +1,6 @@
+import React from 'react';
+import heroBg from '../assets/hero-bg.png';
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#1A1A1A]">
@@ -5,7 +8,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="src/assets/hero-bg.png"
+          src={heroBg}
           alt="Luxury diffuser background"
           className="w-full h-full object-cover opacity-70"
         />
