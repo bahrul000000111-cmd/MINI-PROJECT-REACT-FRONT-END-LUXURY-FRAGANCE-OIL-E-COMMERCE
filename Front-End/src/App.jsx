@@ -14,11 +14,13 @@ import UserDetail from './pages/UserDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 import ContentDetailView from './pages/ContentDetailView';
 import NotFoundPage from './pages/NotFoundPage';
+import ProductShowcase from './components/ProductShowcase';
 
 function LandingPage() {
   return (
     <>
       <Hero />
+      <ProductShowcase />
       <SocialProof />
       <ComparisonSection />
       <StatsSection />
