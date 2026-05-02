@@ -4,21 +4,34 @@ import { useAuth } from "../hooks/useAuth";
 import { labelToSlug } from "../data/contentData";
 
 const navLinks = [
-  { label: "Shop Now", slug: "shop-now" },
+  { label: "Shop Now", slug: null, to: "/shop/all" },
   {
     label: "Shop All",
-    dropdown: ["All Products", "Best Sellers", "New Arrivals", "Gift Sets"],
+    dropdown: [
+      { label: "All Products",  to: "/shop/all" },
+      { label: "Best Sellers",  to: "/shop/all" },
+      { label: "New Arrivals",  to: "/shop/all" },
+      { label: "Gift Sets",     to: "/shop/gift-sets" },
+    ],
   },
   {
     label: "Scent Diffusers",
-    dropdown: ["Cold-Air Diffusers", "Mini Diffusers", "Car Diffusers"],
+    dropdown: [
+      { label: "All Diffusers", to: "/shop/scent-diffusers" },
+      { label: "Mini Diffusers",to: "/shop/scent-diffusers" },
+      { label: "Car Diffusers", to: "/shop/scent-diffusers" },
+    ],
   },
   {
     label: "Hotel Collection",
-    dropdown: ["Hotel Scents", "Lobby Collection", "Premium Line"],
+    dropdown: [
+      { label: "Hotel Scents",    to: "/shop/hotel-collection" },
+      { label: "Lobby Collection",to: "/shop/hotel-collection" },
+      { label: "Premium Line",    to: "/shop/hotel-collection" },
+    ],
   },
-  { label: "Designer Collection", slug: "designer-collection" },
-  { label: "Perfumes", slug: "perfumes" },
+  { label: "Designer Collection", slug: null, to: "/shop/designer-collection" },
+  { label: "Perfumes",            slug: null, to: "/shop/perfumes" },
 ];
 
 export default function Navbar() {
@@ -62,12 +75,12 @@ export default function Navbar() {
                     <div className="absolute top-full left-0 mt-1 bg-white border border-frag-border rounded-xl shadow-lg py-2 min-w-48 z-50">
                       {link.dropdown.map((item) => (
                         <Link
-                          key={item}
-                          to={toHref(item)}
+                          key={item.label}
+                          to={item.to}
                           onClick={() => setOpenDropdown(null)}
                           className="block px-4 py-2 text-sm text-frag-gray hover:text-frag-dark hover:bg-frag-cream transition-colors"
                         >
-                          {item}
+                          {item.label}
                         </Link>
                       ))}
                     </div>
@@ -75,7 +88,7 @@ export default function Navbar() {
                 </div>
               ) : (
                 <Link
-                  to={`/info/${link.slug}`}
+                  to={link.to}
                   className="block px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors"
                 >
                   {link.label}
