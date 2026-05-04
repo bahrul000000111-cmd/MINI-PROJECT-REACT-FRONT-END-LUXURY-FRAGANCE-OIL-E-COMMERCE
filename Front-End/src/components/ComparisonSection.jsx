@@ -1,16 +1,10 @@
 import { useState } from "react";
-import heroBg from "../assets/hero-bg.png";
 
 function Check() {
   return (
-    <div style={{
-      width: 22, height: 22, borderRadius: "50%",
-      background: "rgba(255,255,255,0.15)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      flexShrink: 0,
-    }}>
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-        <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <div className="w-6 h-6 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0 shadow-sm">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </div>
   );
@@ -18,14 +12,9 @@ function Check() {
 
 function Cross() {
   return (
-    <div style={{
-      width: 22, height: 22, borderRadius: "50%",
-      background: "#FDDDD9",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      flexShrink: 0,
-    }}>
-      <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-        <path d="M3 3l6 6M9 3l-6 6" stroke="#E53935" strokeWidth="2" strokeLinecap="round"/>
+    <div className="w-6 h-6 rounded-full bg-[#F3F0E9] flex items-center justify-center flex-shrink-0 border border-[#E5E1D8]">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+        <path d="M3 3l6 6M9 3l-6 6" stroke="#9B3B3B" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     </div>
   );
@@ -36,196 +25,152 @@ const cards = [
     id: "fragra",
     dark: true,
     imageSrc: "https://images.unsplash.com/photo-1600612253971-1e7b97b4b048?q=80&w=600&auto=format&fit=crop",
-    imageAlt: "Frägra Cold-Air Diffuser — Luxury Scenting System",
+    imageAlt: "Frägra Cold-Air Diffuser",
+    productName: "Frägra Diffuser",
     features: [
-      { label: "Cold Air Diffusion Technology", has: true },
-      { label: "Safe For Kids & Pets", has: true },
-      { label: "Clean, Residue-Free Scenting", has: true },
-      { label: "Neutralizes Odors", has: true },
+      { label: "Teknologi Difusi Udara Dingin", has: true },
+      { label: "Aman untuk Anak & Hewan Peliharaan", has: true },
+      { label: "Aroma Bersih, Tanpa Residu", has: true },
+      { label: "Menetralkan Bau Tidak Sedap", has: true },
     ],
     price: "$89.00",
     originalPrice: "$120.00",
-    productUrl: "/products/fragra-diffuser",
-    cta: "Shop Frägra",
+    productUrl: "/info/scent-diffusers",
+    cta: "Beli Frägra",
   },
   {
     id: "candle",
     dark: false,
     imageSrc: "https://images.unsplash.com/photo-1608181831718-c9e3c34f5c5a?q=80&w=600&auto=format&fit=crop",
     imageAlt: "Traditional Scented Candle",
-    productName: "Candle",
+    productName: "Lilin Aroma (Candle)",
     features: [
-      { label: "Requires heat and open flame", has: false },
-      { label: "Can produce soot and residue", has: false },
-      { label: "Scent fades quickly after extinguishing", has: false },
-      { label: "Not ideal around kids or pets", has: false },
+      { label: "Membutuhkan panas dan api terbuka", has: false },
+      { label: "Dapat menghasilkan jelaga dan residu", has: false },
+      { label: "Aroma cepat memudar setelah dimatikan", has: false },
+      { label: "Kurang aman di sekitar anak atau hewan", has: false },
     ],
     price: "$35.00",
-    productUrl: "/products/candle",
+    productUrl: "/info/shop-all",
   },
   {
     id: "spray",
     dark: false,
-    imageSrc: "https://images.unsplash.com/photo-1547496502-affa22e38b1c?q=80&w=600&auto=format&fit=crop",
+    imageSrc: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
     imageAlt: "Generic Air Freshener Spray",
-    productName: "Air Spray",
+    productName: "Semprotan Udara (Spray)",
     features: [
-      { label: "Aerosol or heated release", has: false },
-      { label: "Feels sharp or overpowering", has: false },
-      { label: "Short-lived coverage", has: false },
-      { label: "Frequent re-spraying or refills", has: false },
+      { label: "Pelepasan aerosol atau dipanaskan", has: false },
+      { label: "Terasa tajam atau menyengat", has: false },
+      { label: "Cakupan wangi hanya sebentar", has: false },
+      { label: "Sering perlu disemprot ulang", has: false },
     ],
     price: "$12.00",
-    productUrl: "/products/air-spray",
+    productUrl: "/info/shop-all",
   },
 ];
 
 const certBadges = [
-  "IFRA certified Badge",
+  "IFRA Tersertifikasi",
   "Vegan",
-  "Cruelty Free",
-  "No Phthalphates",
-  "No Parabens",
-  "Safe For Kids & Pets",
+  "Bebas Kekejaman",
+  "Tanpa Phthalate",
+  "Tanpa Paraben",
+  "Aman untuk Anak & Hewan",
 ];
 
 export default function ComparisonSection() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredBanner, setHoveredBanner] = useState(false);
 
-  const cardScale = (id) => ({
-    transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease",
-    transform: hoveredCard === id ? "scale(1.04)" : "scale(1)",
-    boxShadow: hoveredCard === id
-      ? "0 24px 60px rgba(0,0,0,0.28)"
-      : id === "fragra" ? "0 12px 40px rgba(0,0,0,0.18)" : "0 2px 12px rgba(0,0,0,0.06)",
-    cursor: "pointer",
-  });
-
   return (
-    <section style={{ background: "#EDE9E1", padding: "80px 24px" }}>
-      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+    <section className="bg-[#F9F8F6] py-24 px-6 relative">
+      <div className="max-w-5xl mx-auto">
 
         {/* ── Header ── */}
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <p style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888", textTransform: "uppercase", marginBottom: 10 }}>
-            Not All Home Fragrance Is Equal
+        <div className="text-center mb-16">
+          <p className="font-sans text-xs tracking-[0.2em] text-[#C9A96E] uppercase mb-4 font-medium">
+            Tidak Semua Pengharum Ruangan Diciptakan Sama
           </p>
-          <h2 style={{ fontFamily: "Georgia, serif", fontSize: 34, fontWeight: 400, color: "#1A1A1A", margin: "0 0 12px" }}>
-            The Scenting System Designed For Real Homes
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1A1A1A] mb-5 tracking-tight">
+            Sistem Pewangian yang Dirancang untuk Hunian Anda
           </h2>
-          <p style={{ fontSize: 13, color: "#717171", maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>
-            Frägra helps neutralize everyday odors while delivering a clean, consistent scent—without flames or sprays.
+          <p className="font-sans text-base text-[#717171] max-w-2xl mx-auto leading-relaxed font-light">
+            Frägra membantu menetralkan bau sehari-hari sambil memberikan aroma yang bersih dan konsisten — tanpa api atau semprotan aerosol.
           </p>
         </div>
 
         {/* ── 3 Cards ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "stretch" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {cards.map((card) => (
             <div
               key={card.id}
               onMouseEnter={() => setHoveredCard(card.id)}
               onMouseLeave={() => setHoveredCard(null)}
+              className={`rounded-3xl overflow-hidden flex flex-col transition-all duration-500 ease-out ${
+                card.dark ? 'bg-[#1A1A1A] text-white' : 'bg-white text-[#1A1A1A] border border-[#E5E1D8]'
+              }`}
               style={{
-                background: card.dark ? "#1A1A1A" : "white",
-                borderRadius: 20,
-                overflow: "hidden",
-                border: card.dark ? "none" : "1px solid #E5E1D8",
-                display: "flex",
-                flexDirection: "column",
-                ...cardScale(card.id),
+                transform: hoveredCard === card.id ? "scale(1.03) translateY(-8px)" : "scale(1) translateY(0)",
+                boxShadow: hoveredCard === card.id
+                  ? "0 30px 60px rgba(0,0,0,0.15)"
+                  : card.dark ? "0 10px 40px rgba(26,26,26,0.15)" : "0 4px 20px rgba(0,0,0,0.03)",
+                zIndex: hoveredCard === card.id ? 10 : 1,
               }}
             >
-              <div style={{ height: 200, background: card.dark ? "#111" : "#EDE9E1", overflow: "hidden", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {/* Image Container */}
+              <div className={`h-64 overflow-hidden flex-shrink-0 flex items-center justify-center relative p-6 ${card.dark ? 'bg-[#111]' : 'bg-[#FAFAF8]'}`}>
+                {card.dark && <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent z-10 pointer-events-none" />}
                 <img
                   src={card.imageSrc}
                   alt={card.imageAlt}
                   loading="lazy"
-                  style={{
-                    width: "100%", height: "100%",
-                    objectFit: card.dark ? "cover" : "contain",
-                    objectPosition: "center",
-                    filter: card.dark ? "none" : "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
-                    transition: "transform 0.4s ease",
-                  }}
-                  onError={(e) => {
-                    e.target.src = `https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=600&auto=format&fit=crop`;
-                  }}
+                  className={`w-full h-full object-contain transition-transform duration-700 ease-out ${hoveredCard === card.id ? 'scale-110' : 'scale-100'}`}
+                  style={{ filter: card.dark ? "drop-shadow(0 20px 30px rgba(0,0,0,0.5))" : "drop-shadow(0 10px 20px rgba(0,0,0,0.08))" }}
                 />
               </div>
 
-              {/* Features */}
-              <div style={{ padding: "20px 16px", display: "flex", flexDirection: "column", gap: 14, flex: 1 }}>
-                {card.features.map((f) => (
-                  <div key={f.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, textAlign: "center" }}>
-                    {f.has ? <Check /> : <Cross />}
-                    <span style={{ color: card.dark ? "rgba(255,255,255,0.75)" : "#717171", fontSize: 12, lineHeight: 1.4 }}>
-                      {f.label}
-                    </span>
-                  </div>
-                ))}
+              {/* Title & Features */}
+              <div className="p-8 flex flex-col gap-6 flex-1">
+                <h3 className="font-serif text-2xl text-center border-b border-white/10 pb-4">
+                  {card.productName}
+                </h3>
+                
+                <div className="flex flex-col gap-4">
+                  {card.features.map((f) => (
+                    <div key={f.label} className="flex items-start gap-4">
+                      {f.has ? <Check /> : <Cross />}
+                      <span className={`font-sans text-sm leading-relaxed pt-0.5 ${card.dark ? "text-white/90" : "text-[#717171]"}`}>
+                        {f.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-                {/* Price */}
-                <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${card.dark ? "rgba(255,255,255,0.08)" : "#E5E1D8"}` }}>
-                  {/* Clickable price → new tab */}
-                  <a
-                    href={card.productUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`Lihat detail & beli ${card.imageAlt}`}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 8,
-                      textDecoration: "none",
-                      marginBottom: card.cta ? 12 : 0,
-                      padding: "6px 0",
-                      borderRadius: 8,
-                      transition: "opacity 0.2s",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.opacity = "0.7"}
-                    onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-                  >
-                    <span style={{ fontFamily: "Georgia, serif", fontSize: card.dark ? 22 : 18, color: card.dark ? "white" : "#1A1A1A" }}>
+                {/* Price & CTA */}
+                <div className={`mt-auto pt-8 border-t ${card.dark ? "border-white/10" : "border-[#E5E1D8]"}`}>
+                  <div className="flex items-center justify-center gap-3 mb-5">
+                    <span className="font-serif text-3xl">
                       {card.price}
                     </span>
                     {card.originalPrice && (
-                      <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, textDecoration: "line-through" }}>
+                      <span className={`font-sans text-sm line-through ${card.dark ? 'text-white/40' : 'text-[#A09D96]'}`}>
                         {card.originalPrice}
                       </span>
                     )}
-                    {/* external link icon */}
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.4 }}>
-                      <path d="M2 10L10 2M10 2H4M10 2v6" stroke={card.dark ? "white" : "#1A1A1A"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </a>
+                  </div>
 
-                  {/* CTA button (Frägra only) */}
                   {card.cta && (
                     <a
                       href={card.productUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                        background: "white", color: "#1A1A1A",
-                        borderRadius: 999, fontSize: 12, fontWeight: 600,
-                        padding: "10px 0", textDecoration: "none",
-                        transition: "background 0.2s",
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.background = "#F3F0E9"}
-                      onMouseLeave={(e) => e.currentTarget.style.background = "white"}
+                      className={`group flex items-center justify-center gap-3 w-full py-4 rounded-full font-sans text-sm font-semibold transition-all duration-300 ${
+                        card.dark ? 'bg-[#C9A96E] text-white hover:bg-[#B5955A] shadow-[0_4px_14px_rgba(201,169,110,0.4)]' : 'bg-[#1A1A1A] text-white hover:bg-[#333]'
+                      }`}
                     >
                       {card.cta}
-                      <span style={{
-                        width: 18, height: 18, background: "#1A1A1A", borderRadius: "50%",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                      }}>
-                        <svg width="8" height="8" viewBox="0 0 12 12" fill="none">
-                          <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </span>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                        <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </a>
                   )}
                 </div>
@@ -238,73 +183,41 @@ export default function ComparisonSection() {
         <div
           onMouseEnter={() => setHoveredBanner(true)}
           onMouseLeave={() => setHoveredBanner(false)}
+          className="mt-12 rounded-3xl overflow-hidden relative min-h-[280px] flex items-center cursor-pointer transition-all duration-500"
           style={{
-            marginTop: 20,
-            borderRadius: 20,
-            overflow: "hidden",
-            position: "relative",
-            minHeight: 220,
-            display: "flex",
-            alignItems: "center",
-            cursor: "pointer",
-            transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease",
             transform: hoveredBanner ? "scale(1.02)" : "scale(1)",
-            boxShadow: hoveredBanner ? "0 24px 60px rgba(0,0,0,0.25)" : "0 4px 20px rgba(0,0,0,0.1)",
+            boxShadow: hoveredBanner ? "0 30px 60px rgba(0,0,0,0.2)" : "0 10px 30px rgba(0,0,0,0.08)",
           }}
         >
           <img
-            src={heroBg}
-            alt=""
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center",
-              transition: "transform 0.6s ease",
-              transform: hoveredBanner ? "scale(1.04)" : "scale(1)",
-            }}
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.parentElement.style.background = "#2A2520";
-            }}
+            src="https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=1200&auto=format&fit=crop"
+            alt="Frägra Guarantee Background"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out ${hoveredBanner ? 'scale-105' : 'scale-100'}`}
           />
-          <div style={{ position: "absolute", inset: 0, background: "rgba(20,18,15,0.55)" }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-          <div style={{ position: "relative", zIndex: 1, padding: "40px 40px" }}>
-            <div style={{
-              width: 60, height: 60, borderRadius: "50%",
-              background: "#1A1A1A", border: "2px solid rgba(255,255,255,0.2)",
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-              marginBottom: 16,
-            }}>
-              <span style={{ color: "white", fontWeight: 700, fontSize: 18, lineHeight: 1 }}>30</span>
-              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase" }}>DAYS</span>
+          <div className="relative z-10 p-10 md:p-14 max-w-lg">
+            <div className="w-16 h-16 rounded-full border border-[#C9A96E] bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center mb-6">
+              <span className="text-white font-serif text-2xl leading-none">30</span>
+              <span className="text-[#C9A96E] font-sans text-[9px] tracking-widest uppercase mt-1">HARI</span>
             </div>
-            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>
-              Scent the Difference.
+            
+            <p className="text-[#C9A96E] font-sans text-xs tracking-[0.2em] uppercase mb-3 font-medium">
+              Rasakan Perbedaannya.
             </p>
-            <h3 style={{ fontFamily: "Georgia, serif", fontSize: 26, color: "white", fontWeight: 400, margin: "0 0 10px" }}>
-              30-Day Hassle Free Returns
+            <h3 className="font-serif text-3xl md:text-4xl text-white mb-4">
+              30 Hari Pengembalian Bebas Repot
             </h3>
-            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 12, lineHeight: 1.7, maxWidth: 340, marginBottom: 20 }}>
-              If Frägra doesn't noticeably improve how your home smells and feels within 30 days, return it for a full refund. *Conditions Apply.
+            <p className="text-white/70 font-sans text-sm leading-relaxed mb-8 font-light">
+              Jika Frägra tidak secara signifikan meningkatkan kualitas aroma ruangan Anda dalam 30 hari, kembalikan untuk pengembalian dana penuh. *Syarat & Ketentuan Berlaku.
             </p>
             <a
-              href="/guarantee"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                background: "#EDE9E1", color: "#1A1A1A",
-                borderRadius: 999, padding: "10px 20px",
-                fontSize: 12, fontWeight: 600, textDecoration: "none",
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "white"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "#EDE9E1"}
+              href="/info/faq"
+              className="inline-flex items-center gap-3 bg-white text-[#1A1A1A] rounded-full px-6 py-3 font-sans text-sm font-semibold hover:bg-[#F3F0E9] transition-colors duration-300 shadow-lg group"
             >
-              Try Frägra Risk-Free
-              <span style={{
-                width: 22, height: 22, background: "#1A1A1A", borderRadius: "50%",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+              Coba Frägra Tanpa Risiko
+              <span className="w-6 h-6 bg-[#1A1A1A] rounded-full flex items-center justify-center">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-0.5">
                   <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>
@@ -313,23 +226,15 @@ export default function ComparisonSection() {
         </div>
 
         {/* ── Badge Bar ── */}
-        <div style={{
-          marginTop: 24,
-          display: "flex", flexWrap: "wrap",
-          alignItems: "center", justifyContent: "center",
-          gap: "8px 28px",
-        }}>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-[#E5E1D8] pt-8">
           {certBadges.map((b) => (
-            <div key={b} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <div style={{
-                width: 20, height: 20, borderRadius: "50%", background: "#1A1A1A",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <div key={b} className="flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-opacity duration-300">
+              <div className="w-5 h-5 rounded-full bg-[#C9A96E]/20 flex items-center justify-center">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6l3 3 5-5" stroke="#C9A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span style={{ fontSize: 11, color: "#717171" }}>{b}</span>
+              <span className="font-sans text-xs font-medium tracking-wide text-[#717171] uppercase">{b}</span>
             </div>
           ))}
         </div>

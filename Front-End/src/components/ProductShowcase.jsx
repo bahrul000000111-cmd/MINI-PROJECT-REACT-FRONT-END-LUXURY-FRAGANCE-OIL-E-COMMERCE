@@ -4,37 +4,43 @@ import ProductCard from './ProductCard';
 
 export default function ProductShowcase() {
   return (
-    <section style={{ background: '#F3F0E9', padding: '80px 24px' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto' }}>
+    <section className="bg-[#F3F0E9] py-24 px-6 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#C9A96E]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] bg-[#1A1A1A]/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: 'center', marginBottom: 48 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <p style={{ fontSize: 11, letterSpacing: '0.15em', color: '#888', textTransform: 'uppercase', marginBottom: 10 }}>
-            Featured Products
+          <p className="font-sans text-xs tracking-[0.2em] text-[#C9A96E] uppercase mb-4 font-medium">
+            Produk Pilihan
           </p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 34, fontWeight: 400, color: '#1A1A1A', margin: '0 0 14px' }}>
-            Crafted for the Discerning Home
+          <h2 className="font-serif text-4xl md:text-5xl font-normal text-[#1A1A1A] mb-5 tracking-tight">
+            Diciptakan untuk Hunian Eksklusif
           </h2>
-          <p style={{ fontSize: 13, color: '#717171', maxWidth: 440, margin: '0 auto', lineHeight: 1.7 }}>
-            Click any product to explore details, select your size, and experience our luxury scenting collection.
+          <p className="font-sans text-sm md:text-base text-[#717171] max-w-xl mx-auto leading-relaxed font-light">
+            Klik produk apa saja untuk melihat detail, pilih ukuran, dan rasakan koleksi wewangian mewah kami yang akan mengubah suasana rumah Anda.
           </p>
         </motion.div>
 
         {/* Product Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 20 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product, i) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: i * 0.15, ease: "easeOut" }}
             >
               <ProductCard product={product} />
             </motion.div>
@@ -43,26 +49,18 @@ export default function ProductShowcase() {
 
         {/* Footer link */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          style={{ textAlign: 'center', marginTop: 40 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-16"
         >
           <a
             href="/info/shop-all"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              border: '1px solid #E5E1D8', color: '#1A1A1A',
-              borderRadius: 999, padding: '10px 24px',
-              fontSize: 13, fontWeight: 500, textDecoration: 'none',
-              transition: 'background 0.2s, border-color 0.2s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#1A1A1A'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#1A1A1A'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1A1A1A'; e.currentTarget.style.borderColor = '#E5E1D8'; }}
+            className="inline-flex items-center gap-3 border border-[#D4D0C8] text-[#1A1A1A] rounded-full px-8 py-3.5 font-sans text-sm font-medium hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5"
           >
-            View All Products
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+            Lihat Semua Produk
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
               <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
