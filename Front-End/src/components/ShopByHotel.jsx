@@ -1,35 +1,35 @@
 import { useState } from "react";
 
-const articles = [
+const hotels = [
   {
     id: 1,
-    name: "Cara Memilih Aroma Mewah yang Tepat untuk Ruang Tamu Anda",
-    category: "Panduan",
-    date: "15 Jun 2025",
-    // Image strictly perfume/diffuser themed
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683702?q=80&w=600&auto=format&fit=crop",
-    tag: "Populer",
-    url: "/info/hotel-collection",
+    name: "How to Choose the Perfect Tea Makeup",
+    category: "Guide",
+    date: "Jun 15, 2025",
+    // Popular: luxury hotel lobby interior
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe1d6?q=80&w=600&auto=format&fit=crop",
+    tag: "Popular",
+    url: "/shop/hotel-collection",
   },
   {
     id: 2,
-    name: "Seni Difusi: Waktu Terbaik Menyebarkan Aroma di Rumah",
-    category: "Artikel",
-    date: "21 Nov 2025",
-    // Image strictly perfume/diffuser themed
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=600&auto=format&fit=crop",
-    tag: "Baru",
-    url: "/info/scent-diffusers",
+    name: "The Distinctive Art to Diffuse: When to Diffuse Scent Daily",
+    category: "Nov 21, 2025",
+    date: "Nov 21, 2025",
+    // New In: perfume glass bottle on marble
+    image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=600&auto=format&fit=crop",
+    tag: "New In",
+    url: "/shop/scent-diffusers",
   },
   {
     id: 3,
-    name: "Bahan Keharuman Premium yang Digunakan oleh Resor Bintang 5",
-    category: "Panduan",
-    date: "18 Jun 2025",
-    // Image strictly perfume/diffuser themed
-    image: "https://images.unsplash.com/photo-1615529328331-f8917597711f?q=80&w=600&auto=format&fit=crop",
-    tag: "Pilihan Editor",
-    url: "/info/designer-collection",
+    name: "The Best Ingredients for Home Scent Sets used at Hotel",
+    category: "Guide",
+    date: "Jun 18, 2025",
+    // Editor Pick: elegant living room with natural sunlight
+    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=600&auto=format&fit=crop",
+    tag: "Editor Pick",
+    url: "/shop/designer-collection",
   },
 ];
 
@@ -37,71 +37,96 @@ export default function ShopByHotel() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section className="bg-white py-24 px-6 border-t border-[#E5E1D8]">
-      <div className="max-w-6xl mx-auto">
+    <section style={{ background: "#F3F0E9", padding: "0 24px 80px" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-6">
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
           <div>
-            <p className="font-sans text-xs tracking-[0.2em] text-[#C9A96E] uppercase mb-4 font-medium">
-              Eksplorasi Jurnal
+            <p style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888", textTransform: "uppercase", marginBottom: 6 }}>
+              Shop By Hotel
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#1A1A1A] leading-tight tracking-tight">
-              Panduan Keharuman
+            <h2 style={{ fontFamily: "Georgia, serif", fontSize: 30, fontWeight: 400, color: "#1A1A1A", margin: 0 }}>
+              Hotel Scent Collections
             </h2>
           </div>
-          <a
-            href="/info/shop-all"
-            className="inline-flex items-center gap-3 border border-[#D4D0C8] text-[#1A1A1A] rounded-full px-6 py-2.5 font-sans text-sm font-semibold hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-all duration-300 group shadow-sm hover:shadow-lg"
+          <a href="/hotel" style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "#1A1A1A", color: "white",
+            borderRadius: 999, padding: "9px 18px",
+            fontSize: 12, fontWeight: 500, textDecoration: "none",
+            transition: "background 0.2s",
+          }}
+            onMouseEnter={(e) => e.currentTarget.style.background = "#333"}
+            onMouseLeave={(e) => e.currentTarget.style.background = "#1A1A1A"}
           >
-            Baca Semua Jurnal
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            Explore All
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.map((item) => (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          {hotels.map((hotel) => (
             <a
-              key={item.id}
-              href={item.url}
-              onMouseEnter={() => setHovered(item.id)}
+              key={hotel.id}
+              href={hotel.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setHovered(hotel.id)}
               onMouseLeave={() => setHovered(null)}
-              className="block rounded-3xl overflow-hidden bg-white border border-[#E5E1D8] transition-all duration-500 ease-out group hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+              style={{
+                borderRadius: 18,
+                overflow: "hidden",
+                background: "white",
+                border: "1px solid #E5E1D8",
+                textDecoration: "none",
+                display: "block",
+                transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease",
+                transform: hovered === hotel.id ? "scale(1.04)" : "scale(1)",
+                boxShadow: hovered === hotel.id ? "0 20px 50px rgba(0,0,0,0.14)" : "0 2px 10px rgba(0,0,0,0.05)",
+              }}
             >
               {/* Image */}
-              <div className="h-60 bg-[#FAFAF8] overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/5 z-10 group-hover:opacity-0 transition-opacity duration-500" />
+              <div style={{ height: 180, background: "#EDE9E1", overflow: "hidden", position: "relative" }}>
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={hotel.image}
+                  alt={`${hotel.name} — Frägra Hotel Collection`}
                   loading="lazy"
-                  className={`w-full h-full object-cover transition-transform duration-700 ease-out ${hovered === item.id ? 'scale-110' : 'scale-100'}`}
+                  style={{
+                    width: "100%", height: "100%", objectFit: "cover",
+                    transition: "transform 0.5s ease, filter 0.4s ease",
+                    transform: hovered === hotel.id ? "scale(1.06)" : "scale(1)",
+                    filter: hovered === hotel.id ? "grayscale(0%)" : "grayscale(15%)",
+                  }}
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop`;
+                  }}
                 />
                 {/* Tag */}
-                {item.tag && (
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[#1A1A1A] font-sans text-[10px] font-bold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full shadow-sm z-20">
-                    {item.tag}
+                {hotel.tag && (
+                  <div style={{
+                    position: "absolute", top: 12, left: 12,
+                    background: "#1A1A1A", color: "white",
+                    fontSize: 10, fontWeight: 600,
+                    padding: "4px 10px", borderRadius: 999,
+                    letterSpacing: "0.05em",
+                  }}>
+                    {hotel.tag}
                   </div>
                 )}
               </div>
 
               {/* Content */}
-              <div className="p-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="font-sans text-[11px] font-medium tracking-[0.1em] text-[#C9A96E] uppercase">
-                    {item.category}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-[#E5E1D8]" />
-                  <span className="font-sans text-[11px] text-[#A09D96] tracking-wider uppercase">
-                    {item.date}
-                  </span>
-                </div>
-                <h3 className="font-serif text-xl text-[#1A1A1A] leading-snug group-hover:text-[#C9A96E] transition-colors duration-300">
-                  {item.name}
-                </h3>
+              <div style={{ padding: "16px 16px 18px" }}>
+                <p style={{ fontSize: 11, color: "#888", marginBottom: 6, letterSpacing: "0.05em" }}>
+                  {hotel.date}
+                </p>
+                <p style={{ fontSize: 13, color: "#1A1A1A", lineHeight: 1.5, fontWeight: 500, margin: 0 }}>
+                  {hotel.name}
+                </p>
               </div>
             </a>
           ))}
