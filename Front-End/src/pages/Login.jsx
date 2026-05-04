@@ -10,7 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   // Redirect back to origin after login (from AuthGateModal)
-  const from = location.state?.from || '/users';
+  const from = location.state?.from || '/';
   const redirectMessage = location.state?.message || '';
 
   const handleChange = (e) => {

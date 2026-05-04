@@ -53,9 +53,13 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
+      // Hanya bersihkan token dari storage.
+      // Jangan gunakan window.location.href di sini — hard reload akan
+      // menghancurkan seluruh React state tree dan menyebabkan login
+      // gagal setelah logout. ProtectedRoute & AuthProvider sudah
+      // menangani redirect ke /login secara otomatis.
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
     }
     return Promise.reject(error);
   }
