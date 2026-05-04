@@ -27,7 +27,11 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            // CATATAN: 'password' => 'hashed' DIHAPUS dengan sengaja.
+            // Cast ini menyebabkan double-hashing:
+            //   Register → Hash::make() di controller + auto-hash oleh cast
+            //             = hash ganda tersimpan di DB → Login selalu 401.
+            // Password di-hash secara eksplisit via Hash::make() di AuthController.
         ];
     }
 }
