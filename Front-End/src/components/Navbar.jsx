@@ -96,13 +96,7 @@ export default function Navbar() {
               )}
             </li>
           ))}
-          {isAuthenticated && (
-            <li>
-              <Link to="/users" className="block px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors">
-                Users
-              </Link>
-            </li>
-          )}
+
         </ul>
 
         {/* Actions */}
@@ -174,11 +168,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          {isAuthenticated && (
-            <Link to="/users" onClick={() => setMobileOpen(false)} className="text-sm text-frag-gray hover:text-frag-dark py-1 transition-colors">
-              Users
-            </Link>
-          )}
+
           {isAuthenticated ? (
             <button onClick={handleLogout} className="text-left text-sm text-red-600 hover:text-red-700 py-1 transition-colors">
               Logout

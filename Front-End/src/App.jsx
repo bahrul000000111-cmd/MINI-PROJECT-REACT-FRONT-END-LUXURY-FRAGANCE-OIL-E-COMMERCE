@@ -9,8 +9,7 @@ import ComparisonSection from './components/ComparisonSection';
 import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import UserList from './pages/UserList';
-import UserDetail from './pages/UserDetail';
+
 import ProtectedRoute from './components/ProtectedRoute';
 import ContentDetailView from './pages/ContentDetailView';
 import NotFoundPage from './pages/NotFoundPage';
@@ -43,8 +42,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* ── Protected ── */}
-        <Route path="/users" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
-        <Route path="/users/:id" element={<ProtectedRoute><UserDetail /></ProtectedRoute>} />
+
 
         {/* ── Dynamic Info Pages (/info/:slug) ── */}
         <Route path="/info/:slug" element={<ContentDetailView />} />

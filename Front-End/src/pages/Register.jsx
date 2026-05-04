@@ -115,7 +115,7 @@ export default function Register() {
         form.password_confirmation
       );
       if (result.success) {
-        navigate('/users');
+        navigate('/shop');
       } else {
         if (result.errors) {
           setErrors(result.errors);
