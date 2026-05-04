@@ -93,15 +93,15 @@ export default function SocialProof() {
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}
-        <div className="text-center mb-10">
-          <p className="text-xs tracking-widest text-[#717171] uppercase mb-3">
-            50,000+ 5-Star Reviews
+        <div className="text-center mb-14">
+          <p className="text-xs tracking-[0.2em] font-sans text-[#717171] uppercase mb-4">
+            50,000+ 5-Star Experiences
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif text-[#1A1A1A] leading-snug">
-            Why Thousands of Homes Are<br className="hidden md:block" /> Switching to Frägra
+          <h2 className="text-3xl md:text-5xl font-serif text-[#1A1A1A] leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            Why the Most Elegant Homes<br className="hidden md:block" /> Are Embracing Frägra
           </h2>
-          <p className="text-[#717171] text-sm mt-3 max-w-md mx-auto leading-relaxed">
-            Real customers, real results. See what people are saying after making the switch.
+          <p className="text-[#717171] text-sm md:text-base font-sans mt-5 max-w-lg mx-auto leading-relaxed">
+            Authentic experiences from those who demand the finest in home ambiance. Discover the Frägra difference.
           </p>
         </div>
 
@@ -109,13 +109,13 @@ export default function SocialProof() {
         <div className="flex items-center justify-center gap-2 mb-10">
           <div className="flex gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="#E8A838">
+              <svg key={i} width="18" height="18" viewBox="0 0 16 16" fill="#D4AF37">
                 <path d="M8 1l1.8 3.6 4 .6-2.9 2.8.7 4L8 10l-3.6 1.9.7-4L2.2 5.2l4-.6z" />
               </svg>
             ))}
           </div>
-          <p className="text-sm text-[#717171]">
-            <span className="text-[#1A1A1A] font-medium">4.9 / 5</span> — 50,000+ reviews
+          <p className="text-sm font-sans text-[#717171] tracking-wide">
+            <span className="text-[#1A1A1A] font-medium">4.9 / 5</span> — 50,000+ Verified Testimonials
           </p>
         </div>
       </div>
@@ -142,8 +142,8 @@ export default function SocialProof() {
         {testimonials.map((t) => (
           <div
             key={t.id}
-            className="flex-shrink-0 bg-white rounded-2xl overflow-hidden border border-[#E5E1D8] flex flex-col"
-            style={{ width: 320 }}
+            className="flex-shrink-0 bg-white rounded-2xl overflow-hidden border border-[#E5E1D8] flex flex-col transition-all duration-500 ease-in-out hover:shadow-2xl hover:-translate-y-1"
+            style={{ width: 340 }}
           >
             {/* Photo */}
             <div

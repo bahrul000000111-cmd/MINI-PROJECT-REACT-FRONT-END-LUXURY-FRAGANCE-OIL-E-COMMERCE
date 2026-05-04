@@ -3,31 +3,31 @@ import { useState } from "react";
 const hotels = [
   {
     id: 1,
-    name: "How to Choose the Perfect Tea Makeup",
+    name: "The Riviera Collection: Mediterranean Citrus & Fig",
     category: "Guide",
-    date: "Jun 15, 2025",
-    // Popular: luxury hotel lobby interior
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe1d6?q=80&w=600&auto=format&fit=crop",
+    date: "Summer Exclusive",
+    // Premium perfume bottle aesthetic
+    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=600&auto=format&fit=crop",
     tag: "Popular",
     url: "/shop/hotel-collection",
   },
   {
     id: 2,
-    name: "The Distinctive Art to Diffuse: When to Diffuse Scent Daily",
+    name: "The Chalet Collection: Smoked Oud & Vanilla",
     category: "Nov 21, 2025",
-    date: "Nov 21, 2025",
-    // New In: perfume glass bottle on marble
-    image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=600&auto=format&fit=crop",
+    date: "Winter Essential",
+    // Essential oil drops / amber bottle
+    image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
     tag: "New In",
     url: "/shop/scent-diffusers",
   },
   {
     id: 3,
-    name: "The Best Ingredients for Home Scent Sets used at Hotel",
+    name: "The Grand Plaza Collection: White Tea & Thyme",
     category: "Guide",
-    date: "Jun 18, 2025",
-    // Editor Pick: elegant living room with natural sunlight
-    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=600&auto=format&fit=crop",
+    date: "Signature Series",
+    // Abstract elegant smoke/perfume display
+    image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
     tag: "Editor Pick",
     url: "/shop/designer-collection",
   },
@@ -41,13 +41,13 @@ export default function ShopByHotel() {
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36 }}>
           <div>
-            <p style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888", textTransform: "uppercase", marginBottom: 6 }}>
-              Shop By Hotel
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em", color: "#888", textTransform: "uppercase", marginBottom: 10 }}>
+              Curated by Ambiance
             </p>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: 30, fontWeight: 400, color: "#1A1A1A", margin: 0 }}>
-              Hotel Scent Collections
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 34, fontWeight: 400, color: "#1A1A1A", margin: 0 }}>
+              The Resort Scent Collections
             </h2>
           </div>
           <a href="/hotel" style={{
@@ -120,11 +120,11 @@ export default function ShopByHotel() {
               </div>
 
               {/* Content */}
-              <div style={{ padding: "16px 16px 18px" }}>
-                <p style={{ fontSize: 11, color: "#888", marginBottom: 6, letterSpacing: "0.05em" }}>
+              <div style={{ padding: "20px 20px 24px" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "#888", marginBottom: 8, letterSpacing: "0.1em", textTransform: "uppercase" }}>
                   {hotel.date}
                 </p>
-                <p style={{ fontSize: 13, color: "#1A1A1A", lineHeight: 1.5, fontWeight: 500, margin: 0 }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#1A1A1A", lineHeight: 1.6, fontWeight: 500, margin: 0 }}>
                   {hotel.name}
                 </p>
               </div>

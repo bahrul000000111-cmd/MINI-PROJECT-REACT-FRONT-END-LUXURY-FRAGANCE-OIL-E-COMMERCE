@@ -35,7 +35,7 @@ const cards = [
   {
     id: "fragra",
     dark: true,
-    imageSrc: "https://images.unsplash.com/photo-1600612253971-1e7b97b4b048?q=80&w=600&auto=format&fit=crop",
+    imageSrc: "https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=600&auto=format&fit=crop",
     imageAlt: "Frägra Cold-Air Diffuser — Luxury Scenting System",
     features: [
       { label: "Cold Air Diffusion Technology", has: true },
@@ -107,15 +107,15 @@ export default function ComparisonSection() {
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
 
         {/* ── Header ── */}
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <p style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888", textTransform: "uppercase", marginBottom: 10 }}>
-            Not All Home Fragrance Is Equal
+        <div style={{ textAlign: "center", marginBottom: 54 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em", color: "#888", textTransform: "uppercase", marginBottom: 12 }}>
+            The Pinnacle of Olfactory Perfection
           </p>
-          <h2 style={{ fontFamily: "Georgia, serif", fontSize: 34, fontWeight: 400, color: "#1A1A1A", margin: "0 0 12px" }}>
-            The Scenting System Designed For Real Homes
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 36, fontWeight: 400, color: "#1A1A1A", margin: "0 0 16px" }}>
+            An Elevated Scenting Experience Designed for Your Sanctuary
           </h2>
-          <p style={{ fontSize: 13, color: "#717171", maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>
-            Frägra helps neutralize everyday odors while delivering a clean, consistent scent—without flames or sprays.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#717171", maxWidth: 540, margin: "0 auto", lineHeight: 1.8 }}>
+            Frägra effortlessly dissipates mundane odors, bestowing a pure, consistent fragrance—free from the compromise of flames or aerosols.
           </p>
         </div>
 

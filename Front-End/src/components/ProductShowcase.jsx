@@ -15,14 +15,14 @@ export default function ProductShowcase() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: 'center', marginBottom: 48 }}
         >
-          <p style={{ fontSize: 11, letterSpacing: '0.15em', color: '#888', textTransform: 'uppercase', marginBottom: 10 }}>
-            Featured Products
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: '0.2em', color: '#888', textTransform: 'uppercase', marginBottom: 12 }}>
+            The Signature Collection
           </p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 34, fontWeight: 400, color: '#1A1A1A', margin: '0 0 14px' }}>
-            Crafted for the Discerning Home
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 36, fontWeight: 400, color: '#1A1A1A', margin: '0 0 16px' }}>
+            Meticulously Crafted for the Discerning Estate
           </h2>
-          <p style={{ fontSize: 13, color: '#717171', maxWidth: 440, margin: '0 auto', lineHeight: 1.7 }}>
-            Click any product to explore details, select your size, and experience our luxury scenting collection.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717171', maxWidth: 520, margin: '0 auto', lineHeight: 1.8 }}>
+            Select a masterpiece below to explore details, choose your preferred volume, and immerse yourself in our signature olfactory experiences.
           </p>
         </motion.div>
 
@@ -52,16 +52,17 @@ export default function ProductShowcase() {
           <a
             href="/info/shop-all"
             style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
+              display: 'inline-flex', alignItems: 'center', gap: 10,
               border: '1px solid #E5E1D8', color: '#1A1A1A',
-              borderRadius: 999, padding: '10px 24px',
-              fontSize: 13, fontWeight: 500, textDecoration: 'none',
-              transition: 'background 0.2s, border-color 0.2s',
+              borderRadius: 999, padding: '12px 32px',
+              fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 500, textDecoration: 'none',
+              textTransform: 'uppercase', letterSpacing: '0.1em',
+              transition: 'all 0.4s ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#1A1A1A'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#1A1A1A'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1A1A1A'; e.currentTarget.style.borderColor = '#E5E1D8'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#1A1A1A'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#1A1A1A'; e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1A1A1A'; e.currentTarget.style.borderColor = '#E5E1D8'; e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
           >
-            View All Products
+            Explore The Gallery
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
               <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
