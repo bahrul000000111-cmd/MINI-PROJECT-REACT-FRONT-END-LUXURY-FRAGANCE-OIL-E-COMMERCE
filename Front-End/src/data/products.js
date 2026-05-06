@@ -4,38 +4,29 @@ const U = 'https://images.unsplash.com';
 // Image pools per category
 const IMG = {
   diffuser: [
-    `${U}/photo-1600612253971-1e7b97b4b048?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1547496502-affa22e38b1c?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1583847268964-b28dc8f51f92?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1608181831718-c9e3c34f5c5a?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1571781926291-c477ebfd024b?q=80&w=800&auto=format&fit=crop`,
+    `${U}/photo-1629198688000-71f23e745b6e?q=80&w=800&auto=format&fit=crop`,
   ],
   signature: [
-    `${U}/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1551882547-ff40c63fe1d6?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1564501049412-61c2a3083791?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop`,
   ],
   designer: [
     `${U}/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1613521973937-efcfda6fdd95?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1541643600914-78b084683702?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1616401784845-180882ba9ba8?q=80&w=800&auto=format&fit=crop`,
   ],
   perfume: [
     `${U}/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1488161628813-04466f872be2?q=80&w=800&auto=format&fit=crop`,
   ],
   gift: [
-    `${U}/photo-1513201099705-a9746072f043?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1576426863848-c21f53c60b19?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1511895426328-dc8714191011?q=80&w=800&auto=format&fit=crop`,
+    `${U}/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop`,
   ],
 };
 

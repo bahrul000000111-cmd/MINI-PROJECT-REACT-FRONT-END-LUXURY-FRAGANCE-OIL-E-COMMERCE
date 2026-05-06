@@ -48,7 +48,7 @@ function Stars({ r }) {
 function PCard({ p, onView, onCart, wishlist, toggleWish }) {
   const [loaded, setLoaded] = useState(false);
   const [err, setErr] = useState(false);
-  const fallback = 'https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop';
+  const fallback = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';
   const wished = wishlist.includes(p.id);
 
   return (

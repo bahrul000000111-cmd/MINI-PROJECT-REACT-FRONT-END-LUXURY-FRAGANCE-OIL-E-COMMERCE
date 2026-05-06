@@ -14,7 +14,7 @@ const contentData = {
       "From our signature cold-air diffusers to our rare oil concentrates, each product is born from the belief that luxury is not a privilege — it is a daily ritual that everyone deserves to experience.",
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1541643600914-78b084683702?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format&fit=crop",
@@ -31,8 +31,8 @@ const contentData = {
     slug: "shop-all",
     title: "All Products",
     subtitle: "COMPLETE COLLECTION",
-    heroImage: "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=1400&auto=format&fit=crop",
-    thumbnail: "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=600&auto=format&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1400&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
     description: [
       "Our complete catalog is a testament to the art of fine fragrance — a living archive of scents that span continents and centuries of perfumery tradition. Browse freely, explore deeply.",
       "From the quietly intense to the boldly expressive, every product has earned its place through rigorous curation. We carry only what we ourselves would place in our own homes.",
@@ -140,7 +140,7 @@ const contentData = {
     ],
     gallery: [
       "https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=800&auto=format&fit=crop",
     ],
@@ -246,8 +246,8 @@ const contentData = {
     slug: "cookie-policy",
     title: "Cookie Policy",
     subtitle: "TRANSPARENCY FIRST",
-    heroImage: "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=1400&auto=format&fit=crop",
-    thumbnail: "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=600&auto=format&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1400&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
     description: [
       "Cookies are small data files that help our website remember you and function properly. We use them thoughtfully and only where necessary to deliver a smooth, personalized experience.",
       "You are always in control. You can manage your cookie preferences through your browser settings at any time, though disabling certain cookies may affect site functionality.",
@@ -404,7 +404,7 @@ export const products = [
     image: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format&fit=crop",
     imageHD: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=1600&auto=format&fit=crop",
     gallery: [
-      "https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop",
     ],

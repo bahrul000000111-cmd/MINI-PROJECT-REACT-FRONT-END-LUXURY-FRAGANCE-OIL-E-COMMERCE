@@ -14,7 +14,7 @@ function Skeleton({ className = '' }) {
 function LazyImage({ src, alt, className = '', style = {} }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const fallback = 'https://images.unsplash.com/photo-1616489953149-8f6f598c199e?q=80&w=1200&auto=format&fit=crop';
+  const fallback = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1200&auto=format&fit=crop';
 
   return (
     <div className="relative overflow-hidden w-full h-full">
