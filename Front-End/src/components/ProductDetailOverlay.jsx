@@ -122,7 +122,7 @@ export default function ProductDetailOverlay({ product, layoutId, onClose }) {
   const [activeImg, setActiveImg] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
 
-  const allImages = product ? [product.image, ...(product.gallery || [])] : [];
+  const allImages = product ? (product.images || [product.image, ...(product.gallery || [])].filter(Boolean)) : [];
 
   // ── Body scroll lock ──
   useEffect(() => {
@@ -151,8 +151,8 @@ export default function ProductDetailOverlay({ product, layoutId, onClose }) {
 
   if (!product) return null;
 
-  const currentImg = allImages[activeImg] ?? product.image;
-  const currentHD  = activeImg === 0 ? product.imageHD : currentImg.replace('w=800', 'w=1600');
+  const currentImg = allImages[activeImg] || null;
+  const currentHD  = product.imageHD && activeImg === 0 ? product.imageHD : (currentImg ? currentImg.replace('w=800', 'w=1600') : null);
 
   return (
     <AnimatePresence>
