@@ -89,7 +89,7 @@ export default function CartPage() {
                   <span className="text-2xl font-normal text-frag-dark" style={{ fontFamily: 'Georgia, serif' }}>${cartTotal.toFixed(2)}</span>
                 </div>
                 <button className="w-full py-4 bg-[#1A1A1A] hover:bg-black text-white rounded-full font-medium tracking-wide transition-colors shadow-md">
-                  Checkout Sekarang
+                  Checkout Now
                 </button>
               </div>
             </div>

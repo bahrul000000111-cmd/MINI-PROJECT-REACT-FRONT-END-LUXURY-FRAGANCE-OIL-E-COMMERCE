@@ -117,7 +117,7 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
             className="w-full py-2 bg-white/95 backdrop-blur text-frag-dark text-[11px] font-medium tracking-wide rounded shadow-md hover:bg-black hover:text-white transition-colors transform translate-y-4 group-hover:translate-y-0"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-            + Keranjang
+            + Quick Add
           </button>
         </div>
 
