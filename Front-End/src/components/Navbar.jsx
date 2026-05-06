@@ -23,11 +23,11 @@ const navLinks = [
     ],
   },
   {
-    label: "Hotel Collection",
+    label: "Signature Oils",
     dropdown: [
-      { label: "Hotel Scents",    to: "/shop/hotel-collection" },
-      { label: "Lobby Collection",to: "/shop/hotel-collection" },
-      { label: "Premium Line",    to: "/shop/hotel-collection" },
+      { label: "Signature Scents",    to: "/shop/signature-oils" },
+      { label: "Classic Collection",  to: "/shop/signature-oils" },
+      { label: "Premium Blends",      to: "/shop/signature-oils" },
     ],
   },
   { label: "Designer Collection", slug: null, to: "/shop/designer-collection" },

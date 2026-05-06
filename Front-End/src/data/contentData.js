@@ -77,9 +77,9 @@ const contentData = {
     ],
   },
 
-  "hotel-collection": {
-    slug: "hotel-collection",
-    title: "Hotel Collection",
+  "signature-oils": {
+    slug: "signature-oils",
+    title: "Signature Oils",
     subtitle: "FIVE-STAR AMBIANCE",
     heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1400&auto=format&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
@@ -347,10 +347,10 @@ export const labelToSlug = {
   "Cold-Air Diffusers": "scent-diffusers",
   "Mini Diffusers": "scent-diffusers",
   "Car Diffusers": "scent-diffusers",
-  "Hotel Collection": "hotel-collection",
-  "Hotel Scents": "hotel-collection",
-  "Lobby Collection": "hotel-collection",
-  "Premium Line": "hotel-collection",
+  "Signature Oils": "signature-oils",
+  "Signature Scents": "signature-oils",
+  "Classic Collection": "signature-oils",
+  "Premium Blends": "signature-oils",
   "Designer Collection": "designer-collection",
   "Perfumes": "perfumes",
   "About Frägra": "about-us",

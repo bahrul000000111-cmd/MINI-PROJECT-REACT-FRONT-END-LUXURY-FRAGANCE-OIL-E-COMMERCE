@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const hotels = [
+const collections = [
   {
     id: 1,
     name: "The Riviera Collection: Mediterranean Citrus & Fig",
@@ -9,7 +9,7 @@ const hotels = [
     // Premium perfume bottle aesthetic
     image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=600&auto=format&fit=crop",
     tag: "Popular",
-    url: "/shop/hotel-collection",
+    url: "/shop/signature-oils",
   },
   {
     id: 2,
@@ -44,13 +44,13 @@ export default function ShopByHotel() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36 }}>
           <div>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em", color: "#888", textTransform: "uppercase", marginBottom: 10 }}>
-              Curated by Ambiance
+              Curated Masterpieces
             </p>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 34, fontWeight: 400, color: "#1A1A1A", margin: 0 }}>
-              The Resort Scent Collections
+              The Signature Collections
             </h2>
           </div>
-          <a href="/hotel" style={{
+          <a href="/shop/signature-oils" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             background: "#1A1A1A", color: "white",
             borderRadius: 999, padding: "9px 18px",
@@ -69,13 +69,13 @@ export default function ShopByHotel() {
 
         {/* Cards */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-          {hotels.map((hotel) => (
+          {collections.map((collection) => (
             <a
-              key={hotel.id}
-              href={hotel.url}
+              key={collection.id}
+              href={collection.url}
               target="_blank"
               rel="noopener noreferrer"
-              onMouseEnter={() => setHovered(hotel.id)}
+              onMouseEnter={() => setHovered(collection.id)}
               onMouseLeave={() => setHovered(null)}
               style={{
                 borderRadius: 18,
@@ -85,30 +85,30 @@ export default function ShopByHotel() {
                 textDecoration: "none",
                 display: "block",
                 transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease",
-                transform: hovered === hotel.id ? "scale(1.04)" : "scale(1)",
-                boxShadow: hovered === hotel.id ? "0 20px 50px rgba(0,0,0,0.14)" : "0 2px 10px rgba(0,0,0,0.05)",
+                transform: hovered === collection.id ? "scale(1.04)" : "scale(1)",
+                boxShadow: hovered === collection.id ? "0 20px 50px rgba(0,0,0,0.14)" : "0 2px 10px rgba(0,0,0,0.05)",
               }}
             >
               {/* Image */}
               <div style={{ height: 180, background: "#EDE9E1", overflow: "hidden", position: "relative" }}>
                 <img
-                  src={hotel.image}
-                  alt={`${hotel.name} — Frägra Hotel Collection`}
+                  src={collection.image}
+                  alt={`${collection.name} — Signature Collection`}
                   loading="lazy"
                   crossOrigin="anonymous"
                   referrerPolicy="no-referrer"
                   style={{
                     width: "100%", height: "100%", objectFit: "cover",
                     transition: "transform 0.5s ease, filter 0.4s ease",
-                    transform: hovered === hotel.id ? "scale(1.06)" : "scale(1)",
-                    filter: hovered === hotel.id ? "grayscale(0%)" : "grayscale(15%)",
+                    transform: hovered === collection.id ? "scale(1.06)" : "scale(1)",
+                    filter: hovered === collection.id ? "grayscale(0%)" : "grayscale(15%)",
                   }}
                   onError={(e) => {
                     e.target.src = `https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop`;
                   }}
                 />
                 {/* Tag */}
-                {hotel.tag && (
+                {collection.tag && (
                   <div style={{
                     position: "absolute", top: 12, left: 12,
                     background: "#1A1A1A", color: "white",
@@ -116,7 +116,7 @@ export default function ShopByHotel() {
                     padding: "4px 10px", borderRadius: 999,
                     letterSpacing: "0.05em",
                   }}>
-                    {hotel.tag}
+                    {collection.tag}
                   </div>
                 )}
               </div>
@@ -124,10 +124,10 @@ export default function ShopByHotel() {
               {/* Content */}
               <div style={{ padding: "20px 20px 24px" }}>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "#888", marginBottom: 8, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                  {hotel.date}
+                  {collection.date}
                 </p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#1A1A1A", lineHeight: 1.6, fontWeight: 500, margin: 0 }}>
-                  {hotel.name}
+                  {collection.name}
                 </p>
               </div>
             </a>
