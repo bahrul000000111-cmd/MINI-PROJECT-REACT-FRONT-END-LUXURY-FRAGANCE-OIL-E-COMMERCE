@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import heroBg from "../assets/hero-bg.png";
 
 function Check() {
@@ -169,51 +170,18 @@ export default function ComparisonSection() {
 
                 {/* Price */}
                 <div style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${card.dark ? "rgba(255,255,255,0.08)" : "#E5E1D8"}` }}>
-                  {/* Clickable price → new tab */}
-                  <a
-                    href={card.productUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`Lihat detail & beli ${card.imageAlt}`}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 8,
-                      textDecoration: "none",
-                      marginBottom: card.cta ? 12 : 0,
-                      padding: "6px 0",
-                      borderRadius: 8,
-                      transition: "opacity 0.2s",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.opacity = "0.7"}
-                    onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-                  >
-                    <span style={{ fontFamily: "Georgia, serif", fontSize: card.dark ? 22 : 18, color: card.dark ? "white" : "#1A1A1A" }}>
-                      {card.price}
-                    </span>
-                    {card.originalPrice && (
-                      <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, textDecoration: "line-through" }}>
-                        {card.originalPrice}
-                      </span>
-                    )}
-                    {/* external link icon */}
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.4 }}>
-                      <path d="M2 10L10 2M10 2H4M10 2v6" stroke={card.dark ? "white" : "#1A1A1A"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </a>
+                  {/* Pricing removed for curiosity gap */}
 
                   {/* CTA button (Frägra only) */}
                   {card.cta && (
-                    <a
-                      href={card.productUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/shop/all"
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                         background: "white", color: "#1A1A1A",
                         borderRadius: 999, fontSize: 12, fontWeight: 600,
-                        padding: "10px 0", textDecoration: "none",
+                        padding: "12px 0", textDecoration: "none",
+                        marginTop: 12,
                         transition: "background 0.2s",
                       }}
                       onMouseEnter={(e) => e.currentTarget.style.background = "#F3F0E9"}
@@ -228,7 +196,7 @@ export default function ComparisonSection() {
                           <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -287,10 +255,8 @@ export default function ComparisonSection() {
             <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 12, lineHeight: 1.7, maxWidth: 340, marginBottom: 20 }}>
               If Frägra doesn't noticeably improve how your home smells and feels within 30 days, return it for a full refund. *Conditions Apply.
             </p>
-            <a
-              href="/guarantee"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/shop/all"
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: "#EDE9E1", color: "#1A1A1A",
@@ -310,7 +276,7 @@ export default function ComparisonSection() {
                   <path d="M2 10L10 2M10 2H4M10 2v6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

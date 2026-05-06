@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../hooks/useAuth";
 import { labelToSlug } from "../data/contentData";
 import { useContext, useEffect } from "react";
@@ -79,52 +80,65 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <li key={link.label} className="relative">
-              {link.dropdown ? (
-                <div
-                  onMouseEnter={() => setOpenDropdown(link.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
-                  <button className="flex items-center gap-1 px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors">
-                    {link.label}
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                      <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                  {openDropdown === link.label && (
-                    <div className="absolute top-full left-0 mt-1 bg-white border border-frag-border rounded-xl shadow-lg py-2 min-w-48 z-50">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.label}
-                          to={item.to}
-                          onClick={() => setOpenDropdown(null)}
-                          className="block px-4 py-2 text-sm text-frag-gray hover:text-frag-dark hover:bg-frag-cream transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
+        <AnimatePresence>
+          {!searchOpen && (
+            <motion.ul 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, filter: 'blur(4px)' }}
+              transition={{ duration: 0.25 }}
+              className="hidden md:flex items-center gap-1"
+            >
+              {navLinks.map((link) => (
+                <li key={link.label} className="relative">
+                  {link.dropdown ? (
+                    <div
+                      onMouseEnter={() => setOpenDropdown(link.label)}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                      <button className="flex items-center gap-1 px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors">
+                        {link.label}
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      {openDropdown === link.label && (
+                        <div className="absolute top-full left-0 mt-1 bg-white border border-frag-border rounded-xl shadow-lg py-2 min-w-48 z-50">
+                          {link.dropdown.map((item) => (
+                            <Link
+                              key={item.label}
+                              to={item.to}
+                              onClick={() => setOpenDropdown(null)}
+                              className="block px-4 py-2 text-sm text-frag-gray hover:text-frag-dark hover:bg-frag-cream transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
+                  ) : (
+                    <Link
+                      to={link.to}
+                      className="block px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors"
+                    >
+                      {link.label}
+                    </Link>
                   )}
-                </div>
-              ) : (
-                <Link
-                  to={link.to}
-                  className="block px-3 py-2 text-sm text-frag-gray hover:text-frag-dark transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
-
-        </ul>
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
 
         {/* Actions */}
         <div className="flex items-center gap-3">
           {searchOpen ? (
-            <div className="flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 transition-all w-48 lg:w-64">
+            <motion.div 
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: 'auto' }}
+              className="flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 transition-all w-48 md:w-80 lg:w-[400px]"
+            >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#717171" strokeWidth="2">
                 <circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21" strokeLinecap="round"/>
               </svg>
@@ -149,7 +163,7 @@ export default function Navbar() {
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               </button>
-            </div>
+            </motion.div>
           ) : (
             <button 
               onClick={() => setSearchOpen(true)}
