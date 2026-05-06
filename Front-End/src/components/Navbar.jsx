@@ -112,8 +112,8 @@ export default function Navbar() {
             </svg>
           </button>
 
-          <button 
-            onClick={() => setIsCartOpen(true)}
+          <Link 
+            to="/cart"
             className="p-2 text-frag-gray hover:text-frag-dark transition-colors relative"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -125,7 +125,7 @@ export default function Navbar() {
                 {cartCount}
               </span>
             )}
-          </button>
+          </Link>
 
           {isAuthenticated ? (
             <>

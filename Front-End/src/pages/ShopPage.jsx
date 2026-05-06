@@ -8,6 +8,8 @@ import FilterPanel from '../components/FilterPanel';
 import AuthGateModal from '../components/AuthGateModal';
 import ProductDetailOverlay from '../components/ProductDetailOverlay';
 import Footer from '../components/Footer';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartProvider';
 
 // ── Constants ────────────────────────────────────────────────────────────
 const CATS = [
@@ -50,6 +52,7 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
   const [err, setErr] = useState(false);
   const fallback = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';
   const wished = wishlist.includes(p.id);
+  const imageSrc = p.images ? p.images[0] : p.image;
 
   return (
     <motion.div
@@ -57,10 +60,10 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0,0,0,0.08)' }}
       transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-      className="bg-white rounded-xl border border-frag-border overflow-hidden cursor-pointer group relative"
-      style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+      className="bg-white rounded-xl overflow-hidden cursor-pointer group relative flex flex-col transition-all duration-300"
+      style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}
     >
       {/* Image */}
       <div
@@ -69,7 +72,7 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
       >
         {!loaded && <div className="absolute inset-0 animate-pulse bg-frag-border" />}
         <img
-          src={err ? fallback : p.images[0]}
+          src={err ? fallback : imageSrc}
           alt={p.name}
           loading="lazy"
           crossOrigin="anonymous"
@@ -101,22 +104,21 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
         <div className="absolute top-2 right-2 flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0">
           <button
             onClick={(e) => { e.stopPropagation(); toggleWish(p.id); }}
-            className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm border border-frag-border flex items-center justify-center hover:bg-frag-dark hover:text-white hover:border-frag-dark transition-all"
+            className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm shadow flex items-center justify-center hover:bg-frag-dark hover:text-white transition-all"
           >
             <Heart size={12} fill={wished ? '#E8A838' : 'none'} stroke={wished ? '#E8A838' : 'currentColor'} />
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); onCart(p); }}
-            className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm border border-frag-border flex items-center justify-center hover:bg-frag-dark hover:text-white hover:border-frag-dark transition-all"
-          >
-            <ShoppingBag size={12} />
-          </button>
         </div>
 
-        {/* Quick view gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-10 flex items-end justify-center pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{ background: 'linear-gradient(to top, rgba(26,26,26,0.5), transparent)' }}>
-          <span className="text-white text-[10px] font-medium tracking-wider">Quick View</span>
+        {/* Quick add gradient */}
+        <div className="absolute inset-x-0 bottom-0 p-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pb-4">
+          <button 
+            onClick={(e) => { e.stopPropagation(); onCart(p); }}
+            className="w-full py-2 bg-white/95 backdrop-blur text-frag-dark text-[11px] font-medium tracking-wide rounded shadow-md hover:bg-black hover:text-white transition-colors transform translate-y-4 group-hover:translate-y-0"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            + Keranjang
+          </button>
         </div>
 
         {/* Discount badge */}
@@ -128,18 +130,22 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
       </div>
 
       {/* Info */}
-      <div className="p-3" onClick={() => onView(p)}>
-        <p className="text-[9px] text-frag-gray uppercase tracking-wider mb-0.5 truncate">{p.brand}</p>
-        <h3 className="text-xs font-medium text-frag-dark mb-1.5 line-clamp-1" style={{ fontFamily: 'Georgia, serif' }}>
-          {p.name}
-        </h3>
-        <Stars r={p.rating} />
-        <div className="flex items-baseline justify-between mt-1.5">
-          <span className="text-sm font-semibold text-frag-dark" style={{ fontFamily: 'Georgia, serif' }}>
+      <div className="p-4 flex flex-col flex-1 justify-between bg-white text-center" onClick={() => onView(p)}>
+        <div>
+          <p className="text-[10px] text-frag-gray uppercase tracking-wider mb-1 truncate font-medium">{p.brand}</p>
+          <h3 className="text-sm font-medium text-frag-dark mb-1.5 line-clamp-1" style={{ fontFamily: 'Georgia, serif' }}>
+            {p.name}
+          </h3>
+          <div className="flex justify-center mb-2">
+            <Stars r={p.rating} />
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-2 mt-auto">
+          <span className="text-[15px] font-medium text-frag-dark" style={{ fontFamily: 'Georgia, serif' }}>
             ${p.price}
           </span>
           {p.originalPrice && (
-            <span className="text-[10px] text-frag-gray line-through">${p.originalPrice}</span>
+            <span className="text-[11px] text-frag-gray line-through">${p.originalPrice}</span>
           )}
         </div>
       </div>
@@ -173,6 +179,7 @@ export default function ShopPage() {
   const [selectedP, setSelectedP]     = useState(null);
   const [authGate, setAuthGate]       = useState(false);
   const [wishlist, setWishlist]       = useState([]);
+  const { addToCart } = useContext(CartContext);
 
   const base = useMemo(() => getByCategory(category === 'all' ? null : category), [category]);
 
@@ -193,11 +200,7 @@ export default function ShopPage() {
     setWishlist((w) => w.includes(id) ? w.filter((x) => x !== id) : [...w, id]);
 
   const handleCart = (p) => {
-    if (!isAuthenticated && !localStorage.getItem('token')) {
-      setAuthGate(true);
-    } else {
-      setSelectedP(p);
-    }
+    addToCart(p, 1);
   };
 
   const activeCat = CATS.find((c) => c.slug === category) ?? CATS[0];

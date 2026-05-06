@@ -15,6 +15,7 @@ import ContentDetailView from './pages/ContentDetailView';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductShowcase from './components/ProductShowcase';
 import ShopPage from './pages/ShopPage';
+import CartPage from './pages/CartPage';
 
 function LandingPage() {
   return (
@@ -50,6 +51,7 @@ function App() {
         {/* ── Shop / Marketplace ── */}
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:category" element={<ShopPage />} />
+        <Route path="/cart" element={<CartPage />} />
 
         {/* ── 404 ── */}
         <Route path="/404" element={<NotFoundPage />} />
