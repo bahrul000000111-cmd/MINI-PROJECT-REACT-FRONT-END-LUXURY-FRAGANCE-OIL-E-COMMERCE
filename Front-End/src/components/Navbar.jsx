@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { labelToSlug } from "../data/contentData";
+import { useContext } from "react";
+import { CartContext } from "../context/CartProvider";
+import CartDrawer from "./CartDrawer";
 
 const navLinks = [
   { label: "Shop Now", slug: null, to: "/shop/all" },
@@ -39,6 +42,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const { cartCount, setIsCartOpen } = useContext(CartContext);
 
   const handleLogout = async () => {
     await logout();
@@ -106,6 +110,21 @@ export default function Navbar() {
               <circle cx="11" cy="11" r="7"/>
               <path d="M16.5 16.5L21 21" strokeLinecap="round"/>
             </svg>
+          </button>
+
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="p-2 text-frag-gray hover:text-frag-dark transition-colors relative"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <path d="M3 6h18M16 10a4 4 0 01-8 0"/>
+            </svg>
+            {cartCount > 0 && (
+              <span className="absolute 0 top-1 right-0 bg-red-600 text-white text-[9px] font-bold h-3.5 w-3.5 flex items-center justify-center rounded-full transform translate-x-1/4 -translate-y-1/4">
+                {cartCount}
+              </span>
+            )}
           </button>
 
           {isAuthenticated ? (
@@ -181,6 +200,7 @@ export default function Navbar() {
           )}
         </div>
       )}
+      <CartDrawer />
     </nav>
   );
 }

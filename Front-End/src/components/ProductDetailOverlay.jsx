@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { paymentMethods } from '../data/contentData';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartProvider';
 
 // ── Star Rating ──────────────────────────────────────────────────────────
 function Stars({ rating }) {
@@ -121,6 +123,7 @@ export default function ProductDetailOverlay({ product, layoutId, onClose }) {
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] ?? '');
   const [activeImg, setActiveImg] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
+  const { addToCart } = useContext(CartContext);
 
   const allImages = product ? (product.images || [product.image, ...(product.gallery || [])].filter(Boolean)) : [];
 
@@ -139,14 +142,12 @@ export default function ProductDetailOverlay({ product, layoutId, onClose }) {
   }, [onClose]);
 
   const handleAddToCart = () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      onClose();
-      navigate('/login', { state: { from: '/', message: 'Silakan login untuk melanjutkan pesanan.' } });
-      return;
-    }
+    addToCart(product, qty);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2200);
+    setTimeout(() => {
+      setAddedToCart(false);
+      onClose();
+    }, 800);
   };
 
   if (!product) return null;

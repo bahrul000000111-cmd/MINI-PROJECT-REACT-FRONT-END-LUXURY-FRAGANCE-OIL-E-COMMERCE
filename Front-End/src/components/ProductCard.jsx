@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import ProductDetailOverlay from './ProductDetailOverlay';
+import { CartContext } from '../context/CartProvider';
 
 function Stars({ rating }) {
   return (
@@ -21,25 +22,33 @@ export default function ProductCard({ product }) {
   const [open, setOpen] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgErr, setImgErr] = useState(false);
+  const { addToCart } = useContext(CartContext);
+  
   const fallbackImg = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';
   const layoutId = `product-img-${product.id}`;
+  const imageSrc = product.images ? product.images[0] : product.image;
+
+  const handleQuickAdd = (e) => {
+    e.stopPropagation();
+    addToCart(product, 1);
+  };
 
   return (
     <>
       {/* ── Card ── */}
       <motion.div
-        whileHover={{ y: -6, boxShadow: '0 24px 60px rgba(0,0,0,0.11)' }}
+        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0,0,0,0.08)' }}
         transition={{ type: 'spring', damping: 22, stiffness: 260 }}
         onClick={() => setOpen(true)}
-        className="bg-white rounded-2xl border border-frag-border overflow-hidden cursor-pointer group flex flex-col"
-        style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.04)' }}
+        className="bg-white rounded-xl overflow-hidden cursor-pointer group flex flex-col transition-all duration-300"
+        style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}
       >
         {/* Image Container */}
         <div className="relative overflow-hidden bg-gray-50 aspect-[4/5] flex items-center justify-center">
           {!imgLoaded && <div className="absolute inset-0 animate-pulse bg-gray-100" />}
           <motion.img
             layoutId={layoutId}
-            src={imgErr ? fallbackImg : product.image}
+            src={imgErr ? fallbackImg : imageSrc}
             alt={product.name}
             loading="lazy"
             crossOrigin="anonymous"
@@ -64,15 +73,15 @@ export default function ProductCard({ product }) {
             )}
           </div>
           
-          {/* Quick View overlay */}
-          <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pb-6">
-            <div className="px-6 py-2.5 rounded-full text-frag-dark text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-[#E5E1D8] shadow-lg transition-transform duration-300 transform translate-y-2 group-hover:translate-y-0"
-              style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', fontFamily: "'Inter', sans-serif" }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21" strokeLinecap="round"/>
-              </svg>
-              Quick View
-            </div>
+          {/* Quick Add overlay */}
+          <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button 
+              onClick={handleQuickAdd}
+              className="w-full py-2.5 bg-white/95 backdrop-blur text-frag-dark text-xs font-medium tracking-wide border border-gray-200 rounded shadow-lg hover:bg-black hover:text-white transition-colors transform translate-y-4 group-hover:translate-y-0"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              + Quick Add
+            </button>
           </div>
         </div>
 
@@ -82,7 +91,7 @@ export default function ProductCard({ product }) {
             <p className="text-[10px] tracking-[0.15em] font-medium text-frag-gray uppercase mb-1.5 truncate font-sans">
               {product.tagline || product.brand || product.category?.replace('-', ' ')}
             </p>
-            <h3 className="text-[15px] font-medium text-frag-dark mb-2.5 line-clamp-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <h3 className="text-sm font-medium text-frag-dark mb-2.5 line-clamp-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               {product.name}
             </h3>
             <div className="flex items-center justify-center gap-1.5 mb-4">
