@@ -91,7 +91,7 @@ const contentData = {
     gallery: [
       "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe1d6?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop",
     ],
     specifications: [

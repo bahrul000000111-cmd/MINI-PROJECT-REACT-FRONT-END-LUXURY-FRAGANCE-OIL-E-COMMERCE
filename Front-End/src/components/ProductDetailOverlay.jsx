@@ -24,6 +24,9 @@ function ZoomImage({ src, srcHD, alt }) {
   const [zoomed, setZoomed] = useState(false);
   const [pos, setPos] = useState({ x: 50, y: 50 });
   const [loaded, setLoaded] = useState(false);
+  const [imgErr, setImgErr] = useState(false);
+  const fallbackImg = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';
+  const fallbackHD = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600&auto=format&fit=crop';
 
   const handleMove = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -45,10 +48,11 @@ function ZoomImage({ src, srcHD, alt }) {
 
       {/* Normal image */}
       <img
-        src={src}
+        src={imgErr ? fallbackImg : src}
         alt={alt}
         loading="eager"
         onLoad={() => setLoaded(true)}
+        onError={() => { setImgErr(true); setLoaded(true); }}
         className="w-full h-full object-contain transition-opacity duration-500"
         style={{ opacity: loaded ? (zoomed ? 0 : 1) : 0 }}
       />
@@ -58,7 +62,7 @@ function ZoomImage({ src, srcHD, alt }) {
         className="absolute inset-0 transition-opacity duration-300"
         style={{
           opacity: zoomed && loaded ? 1 : 0,
-          backgroundImage: `url(${srcHD})`,
+          backgroundImage: `url(${imgErr ? fallbackHD : srcHD})`,
           backgroundSize: '200%',
           backgroundPosition: `${pos.x}% ${pos.y}%`,
           backgroundRepeat: 'no-repeat',
@@ -93,7 +97,13 @@ function ThumbStrip({ images, active, onSelect }) {
             borderColor: active === i ? '#1A1A1A' : '#E5E1D8',
           }}
         >
-          <img src={img} alt="" loading="lazy" className="w-full h-full object-cover" />
+          <img 
+            src={img} 
+            alt="" 
+            loading="lazy" 
+            className="w-full h-full object-cover" 
+            onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'; }} 
+          />
         </button>
       ))}
     </div>

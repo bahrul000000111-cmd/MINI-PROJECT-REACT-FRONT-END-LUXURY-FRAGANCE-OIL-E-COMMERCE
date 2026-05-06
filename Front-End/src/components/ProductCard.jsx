@@ -20,6 +20,8 @@ function Stars({ rating }) {
 export default function ProductCard({ product }) {
   const [open, setOpen] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgErr, setImgErr] = useState(false);
+  const fallbackImg = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';
   const layoutId = `product-img-${product.id}`;
 
   return (
@@ -37,10 +39,11 @@ export default function ProductCard({ product }) {
           {!imgLoaded && <div className="absolute inset-0 animate-pulse bg-gray-100" />}
           <motion.img
             layoutId={layoutId}
-            src={product.image}
+            src={imgErr ? fallbackImg : product.image}
             alt={product.name}
             loading="lazy"
             onLoad={() => setImgLoaded(true)}
+            onError={() => { setImgErr(true); setImgLoaded(true); }}
             className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
             style={{ opacity: imgLoaded ? 1 : 0 }}
           />
