@@ -10,7 +10,7 @@ const IMG = {
     `${U}/photo-1608181831718-c9e3c34f5c5a?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1571781926291-c477ebfd024b?q=80&w=800&auto=format&fit=crop`,
   ],
-  hotel: [
+  signature: [
     `${U}/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1551882547-ff40c63fe1d6?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop`,
@@ -22,13 +22,13 @@ const IMG = {
     `${U}/photo-1613521973937-efcfda6fdd95?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1541643600914-78b084683702?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1590736969955-71cc94901144?q=80&w=800&auto=format&fit=crop`,
+    `${U}/photo-1616401784845-180882ba9ba8?q=80&w=800&auto=format&fit=crop`,
   ],
   perfume: [
     `${U}/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1616489953149-8f6f598c199e?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop`,
-    `${U}/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop`,
+    `${U}/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop`,
     `${U}/photo-1488161628813-04466f872be2?q=80&w=800&auto=format&fit=crop`,
   ],
   gift: [
@@ -45,15 +45,12 @@ function imgs(pool, i) {
 }
 
 const BRANDS_DIFFUSER  = ['Frägra Signature','Frägra Artisan','Frägra Luxe','Frägra Pro','Frägra Home'];
-const BRANDS_HOTEL     = ['Frägra Hotel','Frägra Grand','Frägra Resort','Frägra Spa','Frägra Suite'];
+const BRANDS_SIGNATURE = ['Frägra Botanicals','Frägra Extracts','Frägra Pure','Frägra Essence','Frägra Aura'];
 const BRANDS_DESIGNER  = ['Frägra × Maison','Frägra × Atelier','Frägra × Riviera','Frägra × Noir','Frägra × Haute'];
 const BRANDS_PERFUME   = ['Frägra No.','Frägra Bloom','Frägra Velvet','Frägra Oud','Frägra Fleur'];
 const TAGS_POOL        = ['Best Seller','New Arrival','Limited Edition','Top Rated','Staff Pick','Exclusive',null,null];
 
 function tag(i) { return TAGS_POOL[i % TAGS_POOL.length]; }
-function rand(min, max, step = 1) {
-  return Math.round((Math.random() * (max - min) + min) / step) * step;
-}
 
 // ── Scent Diffusers (15) ─────────────────────────────────────────────────
 const DIFFUSER_NAMES = [
@@ -80,28 +77,28 @@ const diffusers = DIFFUSER_NAMES.map((name, i) => ({
   description: `The ${name} delivers cold-air nebulizing technology that atomizes fragrance oil into a fine, dry mist with zero heat and zero water. Designed for spaces from 500–2,000 sq ft.`,
 }));
 
-// ── Hotel Collection (12) ────────────────────────────────────────────────
-const HOTEL_NAMES = [
-  'Grand Lobby Signature','Ritz Suite Essence','Mandarin Garden','Peninsula Morning',
-  'Four Seasons Spa','Waldorf Evening','Aman Retreat','Park Hyatt Lobby',
-  'Bulgari Roma Night','Edition Hotel Mist','Rosewood Dusk','Soho House Reserve',
+// ── Signature Essential Oils (12) ────────────────────────────────────────────────
+const SIGNATURE_NAMES = [
+  'Lavender Dream Essence','Citrus Burst Extract','Eucalyptus Pure','Peppermint Clarity',
+  'Frankincense Ritual','Myrrh Deep Meditation','Ylang Ylang Romance','Tea Tree Cleanse',
+  'Rosemary Focus','Bergamot Sunshine','Lemongrass Zen','Sandalwood Grounding',
 ];
 
-const hotels = HOTEL_NAMES.map((name, i) => ({
-  id: `h-${i + 1}`,
-  category: 'hotel-collection',
+const signatures = SIGNATURE_NAMES.map((name, i) => ({
+  id: `s-${i + 1}`,
+  category: 'signature-oils',
   name,
-  brand: BRANDS_HOTEL[i % 5],
+  brand: BRANDS_SIGNATURE[i % 5],
   price: [28, 32, 34, 36, 38, 42, 44, 46, 48, 52, 56, 64][i],
   originalPrice: i % 4 === 0 ? [38, null, 44, null, null, 52, null, null, null, null, null, null][i] : null,
   rating: parseFloat((4.6 + (i % 4) * 0.1).toFixed(1)),
   reviewCount: 320 + i * 221,
   stock: 10 + (i * 11) % 120,
   tags: tag(i + 2),
-  sizes: ['100ml', '200ml', '500ml'],
-  images: imgs(IMG.hotel, i),
-  notes: { top: 'White Tea · Bergamot', heart: 'Cedar · Iris', base: 'Musk · Amber' },
-  description: `${name} captures the essence of a world-class hospitality environment — the quiet grandeur, the deliberate calm, the scent that makes arriving feel like coming home.`,
+  sizes: ['15ml', '30ml', '50ml'],
+  images: imgs(IMG.signature, i),
+  notes: { top: 'Pure Botanicals', heart: 'Distilled Essence', base: 'Natural Extracts' },
+  description: `${name} captures the pure essence of carefully sourced botanicals. Highly concentrated and perfect for our cold-air diffusers to transform your environment into a sanctuary.`,
 }));
 
 // ── Designer Collection (10) ─────────────────────────────────────────────
@@ -130,7 +127,7 @@ const designers = DESIGNER_NAMES.map((name, i) => ({
 
 // ── Perfumes (12) ────────────────────────────────────────────────────────
 const PERFUME_NAMES = [
-  'No. 1 — Lobby','No. 2 — Velvet','No. 3 — Bloom','No. 4 — Amber',
+  'No. 1 — Elegance','No. 2 — Velvet','No. 3 — Bloom','No. 4 — Amber',
   'Ivory Rose EdP','Midnight Cedar','Carte Blanche','Soleil Blanc',
   'Dark Gardenia','L\'Heure Bleue','White Vetiver','Neroli Portofino',
 ];
@@ -154,8 +151,8 @@ const perfumes = PERFUME_NAMES.map((name, i) => ({
 
 // ── Gift Sets (6) ────────────────────────────────────────────────────────
 const GIFT_NAMES = [
-  'Starter Discovery Set','Luxury Home Set','Ultimate Collection',
-  'The Traveler Edit','Weekend Escape Set','The Connoisseur Box',
+  'Starter Discovery Set','Luxury Scenting Set','Ultimate Essential Collection',
+  'The Explorer Edit','Weekend Escape Set','The Connoisseur Box',
 ];
 
 const gifts = GIFT_NAMES.map((name, i) => ({
@@ -176,7 +173,7 @@ const gifts = GIFT_NAMES.map((name, i) => ({
 }));
 
 // ── Combine & Export ─────────────────────────────────────────────────────
-const allProducts = [...diffusers, ...hotels, ...designers, ...perfumes, ...gifts];
+const allProducts = [...diffusers, ...signatures, ...designers, ...perfumes, ...gifts];
 
 export default allProducts;
 

@@ -13,7 +13,7 @@ import Footer from '../components/Footer';
 const CATS = [
   { slug: 'all',                 label: 'All'               },
   { slug: 'scent-diffusers',     label: 'Scent Diffusers'   },
-  { slug: 'hotel-collection',    label: 'Hotel Collection'  },
+  { slug: 'signature-oils',      label: 'Signature Oils'    },
   { slug: 'designer-collection', label: 'Designer'          },
   { slug: 'perfumes',            label: 'Perfumes'          },
   { slug: 'gift-sets',           label: 'Gift Sets'         },
@@ -64,8 +64,7 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
     >
       {/* Image */}
       <div
-        className="relative overflow-hidden bg-[#EDE9E1]"
-        style={{ height: 200 }}
+        className="relative overflow-hidden bg-gray-50 aspect-[4/5] flex items-center justify-center"
         onClick={() => onView(p)}
       >
         {!loaded && <div className="absolute inset-0 animate-pulse bg-frag-border" />}
@@ -75,7 +74,7 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
           loading="lazy"
           onLoad={() => setLoaded(true)}
           onError={() => { setErr(true); setLoaded(true); }}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-107"
+          className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
           style={{ opacity: loaded ? 1 : 0 }}
         />
 
