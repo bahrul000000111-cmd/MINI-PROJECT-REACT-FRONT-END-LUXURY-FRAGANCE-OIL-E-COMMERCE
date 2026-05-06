@@ -42,6 +42,8 @@ export default function ProductCard({ product }) {
             src={imgErr ? fallbackImg : product.image}
             alt={product.name}
             loading="lazy"
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
             onLoad={() => setImgLoaded(true)}
             onError={() => { setImgErr(true); setImgLoaded(true); }}
             className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"

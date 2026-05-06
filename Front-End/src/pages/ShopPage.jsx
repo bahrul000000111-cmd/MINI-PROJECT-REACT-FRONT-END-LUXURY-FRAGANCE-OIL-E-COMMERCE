@@ -72,6 +72,8 @@ function PCard({ p, onView, onCart, wishlist, toggleWish }) {
           src={err ? fallback : p.images[0]}
           alt={p.name}
           loading="lazy"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
           onLoad={() => setLoaded(true)}
           onError={() => { setErr(true); setLoaded(true); }}
           className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"

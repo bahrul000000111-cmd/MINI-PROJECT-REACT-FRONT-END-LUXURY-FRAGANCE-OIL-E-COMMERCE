@@ -141,6 +141,8 @@ export default function ComparisonSection() {
                   src={card.imageSrc}
                   alt={card.imageAlt}
                   loading="lazy"
+                  crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
                   style={{
                     width: "100%", height: "100%",
                     objectFit: card.dark ? "cover" : "contain",

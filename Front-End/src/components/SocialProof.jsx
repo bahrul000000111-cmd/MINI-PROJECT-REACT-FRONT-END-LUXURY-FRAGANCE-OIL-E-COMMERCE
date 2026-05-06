@@ -154,6 +154,8 @@ export default function SocialProof() {
                 src={t.image}
                 alt={`${t.name} — Frägra customer review`}
                 loading="lazy"
+                crossOrigin="anonymous"
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-top"
                 onError={(e) => {
                   e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=E5E1D8&color=1A1A1A&size=150&font-size=0.4`;

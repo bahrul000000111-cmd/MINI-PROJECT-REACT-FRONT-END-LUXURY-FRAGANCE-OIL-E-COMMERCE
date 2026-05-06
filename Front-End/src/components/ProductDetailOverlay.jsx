@@ -51,6 +51,8 @@ function ZoomImage({ src, srcHD, alt }) {
         src={imgErr ? fallbackImg : src}
         alt={alt}
         loading="eager"
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
         onLoad={() => setLoaded(true)}
         onError={() => { setImgErr(true); setLoaded(true); }}
         className="w-full h-full object-contain transition-opacity duration-500"
@@ -101,6 +103,8 @@ function ThumbStrip({ images, active, onSelect }) {
             src={img} 
             alt="" 
             loading="lazy" 
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover" 
             onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop'; }} 
           />

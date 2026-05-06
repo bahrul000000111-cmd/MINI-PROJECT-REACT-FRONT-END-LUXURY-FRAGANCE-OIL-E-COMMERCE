@@ -23,6 +23,8 @@ function LazyImage({ src, alt, className = '', style = {} }) {
         src={error ? fallback : src}
         alt={alt}
         loading="lazy"
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
         onLoad={() => setLoaded(true)}
         onError={() => { setError(true); setLoaded(true); }}
         className={`${className} transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}

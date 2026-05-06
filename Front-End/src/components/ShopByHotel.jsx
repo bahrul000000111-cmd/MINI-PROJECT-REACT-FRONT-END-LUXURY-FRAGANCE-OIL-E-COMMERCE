@@ -95,6 +95,8 @@ export default function ShopByHotel() {
                   src={hotel.image}
                   alt={`${hotel.name} — Frägra Hotel Collection`}
                   loading="lazy"
+                  crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
                   style={{
                     width: "100%", height: "100%", objectFit: "cover",
                     transition: "transform 0.5s ease, filter 0.4s ease",

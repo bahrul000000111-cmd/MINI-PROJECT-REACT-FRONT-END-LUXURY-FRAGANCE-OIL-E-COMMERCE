@@ -59,6 +59,8 @@ function ProductCard({ product, onQuickView }) {
           src={imgError ? fallback : product.image}
           alt={product.name}
           loading="lazy"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
           onLoad={() => setImgLoaded(true)}
           onError={() => { setImgError(true); setImgLoaded(true); }}
           className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
