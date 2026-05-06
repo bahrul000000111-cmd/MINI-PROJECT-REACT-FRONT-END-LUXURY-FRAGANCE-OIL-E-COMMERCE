@@ -17,25 +17,16 @@
 return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    'allowed_methods' => ['*'],
 
-    'allowed_origins' => array_filter([
-        // ─── Local Development ───────────────────────────────────────────
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://localhost:3000',
-
-        // ─── Production: Vercel Front-End (dari .env VPS) ───────────────
-        // Set FRONTEND_URL di .env Laravel pada VPS Anda
-        env('FRONTEND_URL', 'https://mini-project-react-front-end-luxury-fragance-oil-e-goyy2ptnu.vercel.app'),
-    ]),
+    'allowed_origins' => ['*'],
 
     // Pattern untuk subdomain Vercel preview deployments (opsional)
     'allowed_origins_patterns' => [
         // '#^https://.*\.vercel\.app$#',  // Aktifkan jika perlu preview URLs
     ],
 
-    'allowed_headers' => ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With', 'X-XSRF-TOKEN'],
+    'allowed_headers' => ['*'],
 
     'exposed_headers' => [],
 
