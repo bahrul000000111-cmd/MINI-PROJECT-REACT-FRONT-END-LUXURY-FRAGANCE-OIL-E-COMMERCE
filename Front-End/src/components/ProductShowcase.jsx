@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { products } from '../data/contentData';
 import ProductCard from './ProductCard';
 
@@ -49,8 +50,8 @@ export default function ProductShowcase() {
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{ textAlign: 'center', marginTop: 40 }}
         >
-          <a
-            href="/info/shop-all"
+          <Link
+            to="/shop/all"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               border: '1px solid #E5E1D8', color: '#1A1A1A',
@@ -66,7 +67,7 @@ export default function ProductShowcase() {
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
               <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

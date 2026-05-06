@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Heart, SlidersHorizontal, X } from 'lucide-react';
 import { getByCategory, MAX_PRICE } from '../data/products';
@@ -180,11 +180,26 @@ export default function ShopPage() {
   const [authGate, setAuthGate]       = useState(false);
   const [wishlist, setWishlist]       = useState([]);
   const { addToCart } = useContext(CartContext);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q') || '';
 
   const base = useMemo(() => getByCategory(category === 'all' ? null : category), [category]);
 
   const filtered = useMemo(() => {
     let arr = base.filter((p) => {
+      // 1. Search filter
+      if (query) {
+        const q = query.toLowerCase();
+        if (
+          !p.name.toLowerCase().includes(q) &&
+          !p.category.toLowerCase().includes(q) &&
+          (!p.brand || !p.brand.toLowerCase().includes(q))
+        ) {
+          return false;
+        }
+      }
+      
+      // 2. Regular filters
       if (p.price < filters.priceMin || p.price > filters.priceMax) return false;
       if (filters.brands.length && !filters.brands.includes(p.brand)) return false;
       if (filters.minRating && p.rating < filters.minRating) return false;
@@ -214,9 +229,9 @@ export default function ShopPage() {
           <div>
             <p className="text-[10px] tracking-[0.22em] text-white/40 uppercase mb-2">Frägra Marketplace</p>
             <h1 className="text-3xl md:text-4xl font-normal" style={{ fontFamily: 'Georgia, serif' }}>
-              {activeCat.label}
+              {query ? `Search: "${query}"` : activeCat.label}
             </h1>
-            <p className="text-white/50 text-xs mt-1">{base.length} products in this category</p>
+            <p className="text-white/50 text-xs mt-1">{filtered.length} products found</p>
           </div>
           {wishlist.length > 0 && (
             <div className="flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2">
@@ -328,7 +343,7 @@ export default function ShopPage() {
 
             {!loading && filtered.length === 0 && (
               <div className="text-center py-24 text-frag-gray text-sm">
-                No products match your filters.{' '}
+                No products found for your search.{' '}
                 <button onClick={() => setFilters(DEFAULT_FILTERS)} className="underline hover:text-frag-dark">
                   Reset filters
                 </button>

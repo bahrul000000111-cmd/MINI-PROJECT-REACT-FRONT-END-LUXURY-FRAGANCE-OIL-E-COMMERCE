@@ -55,7 +55,7 @@ export default function Hero() {
           <div className="flex flex-col gap-4 mt-4">
             <div className="flex items-center gap-3">
               <Link
-                to="/info/shop-now"
+                to="/shop/all"
                 className="inline-flex items-center gap-2 bg-[#F3F0E9] text-[#1A1A1A] text-sm font-medium px-8 py-3.5 rounded-full hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-500 ease-in-out font-sans uppercase tracking-wider"
               >
                 Curate Your Collection
