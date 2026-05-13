@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import Hero from './components/Hero';
@@ -16,6 +17,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import ProductShowcase from './components/ProductShowcase';
 import ShopPage from './pages/ShopPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import SuccessPage from './pages/SuccessPage';
 
 function LandingPage() {
   return (
@@ -36,14 +39,27 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
+
+      {/* Global Toast Notifications — dark luxury theme */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: '#1A1A1A',
+            color: '#ffffff',
+            borderRadius: '100px',
+            fontSize: '11px',
+            letterSpacing: '0.05em',
+            fontFamily: "'Inter', sans-serif",
+          },
+        }}
+      />
+
       <Routes>
         {/* ── Public ── */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* ── Protected ── */}
-
 
         {/* ── Dynamic Info Pages (/info/:slug) ── */}
         <Route path="/info/:slug" element={<ContentDetailView />} />
@@ -52,6 +68,8 @@ function App() {
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:category" element={<ShopPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/success" element={<SuccessPage />} />
 
         {/* ── 404 ── */}
         <Route path="/404" element={<NotFoundPage />} />

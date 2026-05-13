@@ -1,19 +1,17 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 export const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState(null);
 
   // Load from local storage
   useEffect(() => {
     try {
       const stored = localStorage.getItem('fragra_cart');
-      if (stored) {
-        setCartItems(JSON.parse(stored));
-      }
+      if (stored) setCartItems(JSON.parse(stored));
     } catch (e) {
       console.error('Failed to load cart from localStorage', e);
     }
@@ -36,12 +34,20 @@ export function CartProvider({ children }) {
       }
       return [...prev, { product, quantity }];
     });
-    
-    // Show toast
-    setToastMessage('Successfully added to cart');
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 2500);
+
+    toast.success(`${product.name} added to cart`, {
+      style: {
+        background: '#1A1A1A',
+        color: '#ffffff',
+        borderRadius: '100px',
+        fontSize: '11px',
+        letterSpacing: '0.05em',
+        padding: '10px 20px',
+        fontFamily: "'Inter', sans-serif",
+      },
+      iconTheme: { primary: '#C9A96E', secondary: '#1A1A1A' },
+      duration: 2500,
+    });
   }, []);
 
   const removeFromCart = useCallback((productId) => {
@@ -59,6 +65,7 @@ export function CartProvider({ children }) {
 
   const clearCart = useCallback(() => {
     setCartItems([]);
+    localStorage.removeItem('fragra_cart');
   }, []);
 
   const cartTotal = cartItems.reduce(
@@ -83,19 +90,6 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
-      
-      {/* Global Minimalist Toast */}
-      {toastMessage && (
-        <div 
-          className="fixed top-24 right-6 z-[200] bg-[#1A1A1A]/95 backdrop-blur shadow-lg text-white px-5 py-2.5 rounded-full flex items-center gap-3 transition-all animate-[fadeIn_0.3s_ease-out]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-          <span className="text-[11px] font-medium tracking-wide uppercase">{toastMessage}</span>
-        </div>
-      )}
     </CartContext.Provider>
   );
 }

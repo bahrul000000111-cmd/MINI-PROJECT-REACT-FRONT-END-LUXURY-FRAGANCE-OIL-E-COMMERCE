@@ -91,9 +91,21 @@ export default function ProductCard({ product }) {
             <p className="text-[10px] tracking-[0.15em] font-medium text-frag-gray uppercase mb-1.5 truncate font-sans">
               {product.tagline || product.brand || product.category?.replace('-', ' ')}
             </p>
-            <h3 className="text-sm font-medium text-frag-dark mb-2.5 line-clamp-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <h3 className="text-sm font-medium text-frag-dark mb-1.5 line-clamp-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               {product.name}
             </h3>
+            {/* Vendor Name with Verified Checkmark */}
+            {product.vendorName && (
+              <div className="flex items-center justify-center gap-1 mb-3">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-label="Verified Seller">
+                  <circle cx="8" cy="8" r="8" fill="#C9A96E" />
+                  <polyline points="4.5,8.5 7,11 11.5,5.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+                <span className="text-[9px] tracking-[0.08em] text-[#C9A96E] font-medium uppercase font-sans truncate max-w-[110px]">
+                  {product.vendorName}
+                </span>
+              </div>
+            )}
             <div className="flex items-center justify-center gap-1.5 mb-4">
               <Stars rating={product.rating} />
               <span className="text-[10px] text-frag-gray font-sans">({product.reviewCount.toLocaleString()})</span>
