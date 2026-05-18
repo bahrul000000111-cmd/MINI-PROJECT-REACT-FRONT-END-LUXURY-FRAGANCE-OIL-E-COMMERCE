@@ -44,13 +44,16 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const register = async (name, email, password, password_confirmation) => {
+  // ─── Bug Fix: tambahkan parameter `role` agar field dari Register.jsx
+  //             (dropdown: customer / seller) dikirim ke backend API.
+  const register = async (name, email, password, password_confirmation, role = 'customer') => {
     try {
       const response = await api.post('/register', {
         name,
         email,
         password,
         password_confirmation,
+        role,
       });
       const { user: userData, token } = response.data.data;
       localStorage.setItem('token', token);
@@ -61,11 +64,12 @@ export function AuthProvider({ children }) {
       if (error.response) {
         return {
           success: false,
-          message: error.response.data.message || 'Registration failed',
+          message: error.response.data.message || 'Registrasi gagal.',
           errors: error.response.data.errors || null,
         };
       }
-      return { success: false, message: 'Network error. Please try again.' };
+      // Network error (CORS, Mixed Content, server down)
+      return { success: false, message: 'Network error. Periksa koneksi atau hubungi admin.' };
     }
   };
 

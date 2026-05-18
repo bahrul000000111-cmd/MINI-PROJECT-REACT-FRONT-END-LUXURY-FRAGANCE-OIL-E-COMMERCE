@@ -92,6 +92,7 @@ export default function Register() {
     email: '',
     password: '',
     password_confirmation: '',
+    role: 'customer', // Bug fix: tambahkan role ke form state agar ikut terkirim ke API
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -112,7 +113,8 @@ export default function Register() {
         form.name,
         form.email,
         form.password,
-        form.password_confirmation
+        form.password_confirmation,
+        form.role // Bug fix: teruskan role dari form ke AuthProvider
       );
       if (result.success) {
         navigate('/shop');
