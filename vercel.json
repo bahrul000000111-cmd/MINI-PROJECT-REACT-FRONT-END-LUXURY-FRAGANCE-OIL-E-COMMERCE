@@ -3,10 +3,6 @@
     {
       "source": "/api/:path*",
       "destination": "http://38.47.180.18/student03/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
