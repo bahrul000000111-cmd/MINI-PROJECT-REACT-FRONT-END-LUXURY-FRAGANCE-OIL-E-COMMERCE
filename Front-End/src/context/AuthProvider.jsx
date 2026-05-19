@@ -27,12 +27,14 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       const response = await api.post('/login', { email, password });
-      const { user: userData, token } = response.data.data;
+      const payload = response.data.data || response.data;
+      const { user: userData, token } = payload;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
       return { success: true, message: response.data.message };
     } catch (error) {
+      console.error('Login Error:', error);
       if (error.response) {
         return {
           success: false,
@@ -55,12 +57,14 @@ export function AuthProvider({ children }) {
         password_confirmation,
         role,
       });
-      const { user: userData, token } = response.data.data;
+      const payload = response.data.data || response.data;
+      const { user: userData, token } = payload;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
-      return { success: true, message: response.data.message };
+      return { success: true, message: response.data.message || 'Registrasi sukses.' };
     } catch (error) {
+      console.error('Registration Error:', error);
       if (error.response) {
         return {
           success: false,
